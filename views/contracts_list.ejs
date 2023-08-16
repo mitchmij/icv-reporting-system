@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+
+    <title>ICV Report</title>
+
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo_name">ICV System</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="/admin">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href="/new_vendor">
+            <i class='bx bx-user-plus'></i>
+            <span class="links_name">New Registration</span>
+          </a>
+          <span class="tooltip">New Registration</span>
+        </li>
+        <li>
+          <a href="/vendor">
+            <i class='bx bx-list-ol'></i>
+            <span class="links_name">Vendors</span>
+          </a>
+          <span class="tooltip">List of Vendors</span>
+        </li>
+        <li>
+          <a href="/contracts_list" style="background-color:#dddddd;">
+            <i class='bx bx-list-ol'></i>
+            <span class="links_name">Business Partner</span>
+          </a>
+          <span class="tooltip">List of Business Partner</span>
+        </li>
+        <li>
+          <a href="">
+            <i class='bx bx-spreadsheet'></i>
+            <span class="links_name">Reports</span>
+          </a>
+          <span class="tooltip">Reports</span>
+        </li>
+        <li>
+          <a href="/users/logout">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log Out</span>
+          </a>
+          <span class="tooltip">Log Out</span>
+        </li>
+        <li class="profile">
+          <div class="profile-details">
+            <div class="name_job">
+              <div class="name"> <%= name %></div>
+              <div class="job"><%= role %></div>
+            </div>
+          </div>
+          <i class="bx bx-buildings" id="log_out"><a href=""></a></i>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+
+      let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      let searchBtn = document.querySelector(".bx-search");
+      
+      closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
+      });
+      
+      
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+       if(sidebar.classList.contains("open")){
+         closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+       }else {
+         closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+       }
+      }
+      
+      </script>
+    <section class="home-section">
+    <div class="text">Admin Dashboard</div>
+    <div class="container">
+    <div class="card">
+    <div class="card-body">
+        <h4>List of All Contracts</h4>
+        <hr>
+        <br>
+        <h5>List of Contracts Admin</h5><a class="btn btn-md btn-warning" data-toggle="modal" data-target="#new_ca" href="" >Add New</a>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-bordered" id="content_table">
+            <thead>
+              <tr>
+                <tr class="text-center">
+                  <th>Name</th>
+                  <th>Company</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+        
+            <tbody id="tablenew" class="text-center">
+              <% userList.forEach(admin =>{ if(admin.role === 'Contract Admin') { %>  
+              <tr>
+                <td class="text-center"><%= admin.name%></td>
+                <td class="text-center"><%= admin.company%></td>
+                <td class="text-center"><a class="btn btn-md btn-warning" data-toggle="modal" data-target="#admindetail<%= admin._id %>" href="" >View Details</a></td>
+                  </tr>
+
+<!-- Modal -->
+<div class="modal fade" id="admindetail<%= admin._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Contract Admin Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+       
+          <div class="card-body">
+
+<div class="container" style="padding: 10px;">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= admin.name %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Company</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= admin.company %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= admin.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= admin.phone %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Created At</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= admin.createdAt %></p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <% }}) %>
+        
+          </tbody>
+          <tr><td colspan="3"></td></tr>
+
+          <tfoot>
+            <tr>
+              <td class="text-center" colspan="2" style="font-weight: bold;">Total</td>
+           <td id="new" class="text-center"></td>
+            </tr>
+          </tfoot>
+          </table>
+          
+          <script>
+           
+          
+          var ca = document.getElementById("tablenew").rows.length;
+          document.getElementById("new").innerHTML = ca;
+          
+          </script>
+          </div>
+        <br>
+        <h5>List of Active Contracts</h5>
+        <hr>
+        <div class="table-responsive">
+        <table class="table table-bordered" id="">
+          <thead>
+            <tr>
+              <tr class="text-center">
+                <th>Contract ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+      
+          <tbody id="table1" class="text-center">
+            <% contractList.forEach(cont =>{ if(cont.contract_status === 'Active') { %>  
+            <tr>
+              <td class="text-center"><%= cont.contract_id%></td>
+              <td class="text-center"><%= cont.contract_title%></td>
+              <td class="text-center"><%= cont.contract_status%></td>
+              <td class="text-center"><a class="btn btn-md btn-warning" data-toggle="modal" data-target="#contract_detail<%= cont._id %>" href="" >View Details</a></td>
+            </tr>
+
+<!-- Modal -->
+<div class="modal fade" id="contract_detail<%= cont._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLongTitle">Vendor Detail</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+ 
+ 
+    <div class="card-body">
+
+<div class="container" style="padding: 10px;">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Contract ID</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0"><%= cont.contract_id %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Title</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0"><%= cont.contract_title %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Status</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0"><%= cont.contract_status %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">KPI</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0"><%= cont.contract_kpi %></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Created At</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="mb-0"><%= cont.createdAt %></p>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+              <% }}) %>
+           
+        </tbody>
+        <tr><td colspan="4"></td></tr>
+
+    
+    <tfoot>
+      <tr>
+        <td class="text-center" colspan="3" style="font-weight: bold;">Total</td>
+     <td id="totalnew" class="text-center"></td>
+      </tr>
+    </tfoot>
+    </table>
+
+    <script>
+     
+    
+    var cont_a = document.getElementById("table1").rows.length;
+    document.getElementById("totalnew").innerHTML = cont_a;
+
+    </script>
+        </div>
+<br><br>
+         <h5>List of Inactive Contracts</h5>
+          <hr>
+          
+          <div class="table-responsive">
+          <table class="table table-bordered" id="content_table">
+            <thead>
+              <tr>
+                <tr class="text-center">
+                  <th>Contract ID</th>
+                  <th>Title</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+        
+            <tbody id="table2" class="text-center">
+              <% contractList.forEach(cont =>{ if(cont.contract_status === 'Inactive') { %>  
+              <tr>
+                <td class="text-center"><%= cont.contract_id%></td>
+                <td class="text-center"><%= cont.contract_title%></td>
+                <td class="text-center"><a class="btn btn-md btn-warning" data-toggle="modal" data-target="#contractdetail<%= cont._id %>" href="" >View Details</a></td>
+                  </tr>
+
+<!-- Modal -->
+<div class="modal fade" id="contractdetail<%= cont._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Vendor Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+       
+          <div class="card-body">
+
+<div class="container" style="padding: 10px;">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Contract ID</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= cont.contract_id %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Title</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= cont.contract_title %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Status</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= cont.contract_status %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">KPI</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= cont.contract_kpi %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Created At</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0"><%= cont.createdAt %></p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <% }}) %>
+        
+          </tbody>
+          <tr><td colspan="3"></td></tr>
+
+          <tfoot>
+            <tr>
+              <td class="text-center" colspan="2" style="font-weight: bold;">Total</td>
+           <td id="total_new" class="text-center"></td>
+            </tr>
+          </tfoot>
+          </table>
+          
+          <script>
+           
+          
+          var cont_i = document.getElementById("table2").rows.length;
+          document.getElementById("total_new").innerHTML = cont_i;
+          
+          </script>
+          </div>
+
+    </div> <!--End of card body-->
+  </div><!--End of card-->
+</div><!--End of container-->
+<br>
+</section><!--End of section-->
+
+<!-- Modal -->
+<div class="modal fade" id="new_ca" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Contract Admin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/users/contracts_list" method="post">
+          
+            <div class="form-group" hidden>
+              <label>Vendor ID</label>
+              <input type="text" class="form-control" name="v_id" id="v_id" placeholder="">
+            </div>
+            <div class="form-group" hidden>
+              <label>Role</label>
+              <input type="text" class="form-control" name="role" id="" placeholder="" value="Contract Admin">
+            </div>
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="">
+            </div>
+       
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" class="form-control" name="company" id="company" placeholder="">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="">
+            </div>
+      
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="number" class="form-control" name="phone" id="phone" placeholder="">
+            </div>
+            <div class="form-group" hidden>
+              <label>Description/Work Category</label>
+              <input type="text" class="form-control" name="description" id="description" placeholder="" value="Contracts Admin">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control"  name="password" id="password" placeholder="">
+            </div>
+            <div class="form-group" hidden>
+              <label>Status</label>
+              <input type="text" class="form-control"  name="status" id="status" placeholder="" value="Active">
+            </div>
+          <div class="text-left">
+          <button type="submit" class="btn btn-lg" id="signbutton">Add</button>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+       <!--jQuery and Bootstrap Bundle (includes Popper) -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    </body>
+  </html>

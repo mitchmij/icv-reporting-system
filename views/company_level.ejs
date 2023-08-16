@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <title>ICV Report</title>
+
+</head>
+
+  <body>
+
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo_name">ICV System</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="/vendor_dashboard">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href="/company_level" style="background-color:#dddddd;">
+            <i class='bx bx-detail'></i>
+            <span class="links_name">Company Level Form</span>
+          </a>
+          <span class="tooltip">Company Level Form</span>
+        </li>
+        <li>
+          <a href="/contract">
+            <i class='bx bx-file-blank'></i>
+            <span class="links_name">Contracts</span>
+          </a>
+          <span class="tooltip">Contracts</span>
+        </li>
+        <li>
+          <a href="/users/logout">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log Out</span>
+          </a>
+          <span class="tooltip">Log Out</span>
+        </li>
+        <li class="profile">
+          <div class="profile-details">
+            <div class="name_job">
+              <div class="name"> <%= company %></div>
+              <div class="job"><%= v_id %></div>
+            </div>
+          </div>
+          <i class="bx bx-buildings" id="log_out"><a href=""></a></i>
+        </li>
+      </ul>
+    </div>
+<script>
+
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+
+closeBtn.addEventListener("click", ()=>{
+  sidebar.classList.toggle("open");
+  menuBtnChange();//calling the function(optional)
+});
+
+
+// following are the code to change sidebar button(optional)
+function menuBtnChange() {
+ if(sidebar.classList.contains("open")){
+   closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+ }else {
+   closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+ }
+}
+
+</script>
+
+    <section class="home-section">
+      <div class="text">Company Level Form</div>
+
+      <div class="container">
+        <div class="card">
+          <br>
+          <h3 id="myId" style="display: none; text-align: center;"></h3>
+          <%- include ("./alerts/messages"); %>
+         
+        
+          <script>
+
+            //To get the date and month
+          var currentTime = new Date()
+          var month = currentTime.getMonth() + 1
+          var day = currentTime.getDate()
+  
+          if(day <= 22 && month == 4)
+          {
+             // document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q01")
+              var text = document.createTextNode("Quarter 1");
+              //title.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+             else if(day <= 22 && month == 7) {
+             //document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q02")
+              var text = document.createTextNode("Quarter 2");
+              //title.appendChild(text);
+             document.getElementById("myId").appendChild(text);
+          }
+  
+          else if(day <= 22 && month == 10) {
+            //document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q03")
+              var text = document.createTextNode("Quarter 3");
+              //title.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          else if(day <= 22 && month == 1) {
+           // document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q04")
+              var text = document.createTextNode("Quarter 4");
+              //element.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          else {
+            document.getElementById("myId").style.display = 'block';
+            var text = document.createTextNode("No Active Quarter");
+              //element.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          </script>
+
+            <div class="card-body">
+              
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+               <div class="card my-4">
+                 <!-- navigation in .card-header -->
+                 <div class="card-header">
+                   <ul class="nav nav-tabs card-header-tabs">
+                     <li class="nav-item">
+                       <a class="nav-link active" style="color: #DE8703; font-weight: bold;" data-toggle="tab" href="#tab1">Work Force Break Down</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" style="color: #DE8703; font-weight: bold;" href="#tab2">Recruitment and Leavers</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" style="color: #DE8703; font-weight: bold;" href="#tab3">Content Break Down</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" style="color: #DE8703; font-weight: bold;" href="#tab4">Apprenticeship Program</a>
+                     </li>
+                   </ul>
+                 </div>
+                 <!-- .card-body.tab-content  -->
+                 <div class="card-body tab-content">
+                   <div class="tab-pane fade show active" id="tab1">
+                  
+                    <h4>Section 1 - Work Force Break Down</h4>
+                    <hr>
+                    <ul class="accordion">
+                  <li>
+                    <input type="radio" name="tab" id="first" checked>
+                  <label for="first"> Existing Management </label>
+                    <div class="content">
+                        <!--  Bootstrap table-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="force_table">
+                              <form action="/workforce/company_level" method="POST">
+                               
+                                  <tr>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                      <th style="width: 35%;">Job Position</th>
+                                      <th>Local</th>
+                                      <th>Non-Local</th>
+                                      <th>SAWP</th>
+                                    </tr>
+                                
+                               
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="category" value="Management"></td>
+                                <td><input type="text" class="form-control shadow-none" name="position"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="local"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="nonlocal"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="sawp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="4">
+                                      <div class="text-right">
+                                    <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                                  </div>
+                                    </td>
+                                  </tr>
+                        </form>
+                            </table>
+                          </div>
+            </div>
+            </li>
+                     
+                <li>
+                  <input type="radio" name="tab" id="second">
+                <label for="second"> Existing Supervisor </label>
+                <div class="content">
+                  <!--  Bootstrap table-->
+                  <div class="table-responsive">
+                      <table class="table table-bordered" id="force_table">
+                        <form action="/workforce/company_level" method="POST">
+                         
+                            <tr>
+                              <th hidden></th>
+                              <th hidden></th>
+                              <th hidden></th>
+                                <th style="width: 35%;">Job Position</th>
+                                <th>Local</th>
+                                <th>Non-Local</th>
+                                <th>SAWP</th>
+                              </tr>
+                          
+                         
+                        <tr>
+                          <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                          <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                          <td hidden><input type="text" class="form-control shadow-none" name="category" value="Supervisor"></td>
+                          <td><input type="text" class="form-control shadow-none" name="position"></td>
+                              <td><input type="number" class="form-control shadow-none" name="local"></td>
+                              <td><input type="number" class="form-control shadow-none" name="nonlocal"></td>
+                              <td><input type="number" class="form-control shadow-none" name="sawp"></td>
+                            </tr>
+                            <tr>
+                              <td colspan="4">
+                                <div class="text-right">
+                              <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                            </div>
+                              </td>
+                            </tr>
+                  </form>
+                      </table>
+                    </div>
+      </div>
+      </li>
+                    
+                      <li>
+                        <input type="radio" name="tab" id="third">
+                      <label for="third"> Existing Skilled </label>
+                      <div class="content">
+                        <!--  Bootstrap table-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="force_table">
+                              <form action="/workforce/company_level" method="POST">
+                               
+                                  <tr>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                      <th style="width: 35%;">Job Position</th>
+                                      <th>Local</th>
+                                      <th>Non-Local</th>
+                                      <th>SAWP</th>
+                                    </tr>
+                                
+                               
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="category" value="Skilled"></td>
+                                <td><input type="text" class="form-control shadow-none" name="position"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="local"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="nonlocal"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="sawp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="4">
+                                      <div class="text-right">
+                                    <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                                  </div>
+                                    </td>
+                                  </tr>
+                        </form>
+                            </table>
+                          </div>
+            </div>
+            </li>
+                      
+                      <li>
+                        <input type="radio" name="tab" id="fourth">
+                      <label for="fourth"> Existing Non-Skilled </label>
+                        <div class="content">
+                            <!--  Bootstrap table-->
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="force_table">
+                                  <form action="/workforce/company_level" method="POST">
+                                   
+                                      <tr>
+                                        <th hidden></th>
+                                        <th hidden></th>
+                                        <th hidden></th>
+                                          <th style="width: 35%;">Job Position</th>
+                                          <th>Local</th>
+                                          <th>Non-Local</th>
+                                          <th>SAWP</th>
+                                        </tr>
+                                    
+                                   
+                                  <tr>
+                                    <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                                    <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                                    <td hidden><input type="text" class="form-control shadow-none" name="category" value="Non-Skilled"></td>
+                                    <td><input type="text" class="form-control shadow-none" name="position"></td>
+                                        <td><input type="number" class="form-control shadow-none" name="local"></td>
+                                        <td><input type="number" class="form-control shadow-none" name="nonlocal"></td>
+                                        <td><input type="number" class="form-control shadow-none" name="sawp"></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="4">
+                                          <div class="text-right">
+                                        <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                                      </div>
+                                        </td>
+                                      </tr>
+                            </form>
+                                </table>
+                              </div>
+                </div>
+              </li>   
+                      
+                      <li>
+                        <input type="radio" name="tab" id="fifth">
+                      <label for="fifth"> Existing Admin & Account </label>
+                      <div class="content">
+                        <!--  Bootstrap table-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="force_table">
+                              <form action="/workforce/company_level" method="POST">
+                               
+                                  <tr>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                      <th style="width: 35%;">Job Position</th>
+                                      <th>Local</th>
+                                      <th>Non-Local</th>
+                                      <th>SAWP</th>
+                                    </tr>
+                                
+                               
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                                <td hidden><input type="text" class="form-control shadow-none" name="category" value="Admin & Account"></td>
+                                <td><input type="text" class="form-control shadow-none" name="position"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="local"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="nonlocal"></td>
+                                    <td><input type="number" class="form-control shadow-none" name="sawp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="4">
+                                      <div class="text-right">
+                                    <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                                  </div>
+                                    </td>
+                                  </tr>
+                        </form>
+                            </table>
+                          </div>
+            </div>
+            </li>
+                  <!--card-mb-4-->
+                  </ul>
+                   </div>
+                   <div class="tab-pane fade" id="tab2">
+                     
+      
+          <h4>Section 2 - Recruitment and Leavers</h4>
+        <hr>
+        <ul class="accordion">
+          <li>
+            <input type="radio" name="tab" id="sixth">
+          <label for="sixth"> Local Recruitment </label>
+          <div class="content">
+            <p>Total New Recruitment To Date</p>
+            <!--  Bootstrap table-->
+            <div class="table-responsive">
+              <table class="table table-bordered" id="hire_table">
+                <form action="/localrecruit/company_level" method="POST">
+                 
+                <tr>
+                <th hidden></th>
+                <th hidden></th>
+                <th hidden></th>
+                <th hidden></th>
+                <th>Experienced Hire</th>
+                <th>Staff Rollover</th>
+                <th>Graduates</th>
+                <th>Higher National Diploma(HND)</th>
+                <th>Brunei Maritime Academy(BMA)</th>
+                <th>Advance Diploma/Diploma/Certificate</th>
+                <th>IBTE(NTEC/HNTEC)</th>
+                <th>School Leavers(GCE 'A' Level and Below)</th>
+                </tr>
+                  
+                 
+                <tr>
+                  <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                <td hidden><input type="text" class="form-control shadow-none" name="category" value="Local Recruitment"></td>
+                <td hidden><input type="text" class="form-control shadow-none" name="code" value="Total New Recruitment To Date"></td>
+                <td><input type="text" class="form-control shadow-none" name="exphire"></td>
+                <td><input type="number" class="form-control shadow-none" name="rollover"></td>
+                <td><input type="number" class="form-control shadow-none" name="grads"></td>
+                <td><input type="number" class="form-control shadow-none" name="hnd"></td>
+                <td><input type="text" class="form-control shadow-none" name="bma"></td>
+                <td><input type="number" class="form-control shadow-none" name="adc"></td>
+                <td><input type="number" class="form-control shadow-none" name="ibte"></td>
+                <td><input type="number" class="form-control shadow-none" name="schleavers"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="8">
+                        <div class="text-right">
+                      <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                    </div>
+                      </td>
+                    </tr>
+          </form>
+              </table>
+              </div>
+<br>
+              <p>Total New Recruitment This Year</p>
+              <!--  Bootstrap table-->
+              <div class="table-responsive">
+                  <table class="table table-bordered" id="hire_table">
+                  <form action="/localrecruit/company_level" method="POST">
+                     
+                    <tr>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th>Experienced Hire</th>
+                      <th>Staff Rollover</th>
+                      <th>Graduates</th>
+                      <th>Higher National Diploma(HND)</th>
+                      <th>Brunei Maritime Academy(BMA)</th>
+                      <th>Advance Diploma/Diploma/Certificate</th>
+                      <th>IBTE(NTEC/HNTEC)</th>
+                      <th>School Leavers(GCE 'A' Level and Below)</th>
+                      </tr>
+                        
+                       
+                      <tr>
+                        <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                      <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                      <td hidden><input type="text" class="form-control shadow-none" name="category" value="Local Recruitment"></td>
+                      <td hidden><input type="text" class="form-control shadow-none" name="code" value="Total New Recruitment This Year"></td>
+                    <td><input type="text" class="form-control shadow-none" name="exphire"></td>
+                    <td><input type="number" class="form-control shadow-none" name="rollover"></td>
+                    <td><input type="number" class="form-control shadow-none" name="grads"></td>
+                    <td><input type="number" class="form-control shadow-none" name="hnd"></td>
+                    <td><input type="text" class="form-control shadow-none" name="bma"></td>
+                    <td><input type="number" class="form-control shadow-none" name="adc"></td>
+                    <td><input type="number" class="form-control shadow-none" name="ibte"></td>
+                    <td><input type="number" class="form-control shadow-none" name="schleavers"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="8">
+                            <div class="text-right">
+                          <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                        </div>
+                          </td>
+                        </tr>
+                    </form> 
+                  </table>
+                </div>
+
+</div>
+          </li>
+
+              <li>
+                <input type="radio" name="tab" id="seventh">
+              <label for="seventh"> Non-Local Recruitment </label>
+              <div class="content">
+                <p>Total New Recruitment To Date</p>
+                <!--  Bootstrap table-->
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="hire_table">
+                    <form action="/nonlocalrecruit/company_level" method="POST">
+                     
+                    <tr>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th>Experienced Hire</th>
+                    <th>Staff Rollover</th>
+                    <th>Graduates</th>
+                    <th>Higher National Diploma(HND)</th>
+                    <th>Brunei Maritime Academy(BMA)</th>
+                    <th>Advance Diploma/Diploma/Certificate</th>
+                    <th>IBTE(NTEC/HNTEC)</th>
+                    <th>School Leavers(GCE 'A' Level and Below)</th>
+                    </tr>
+                      
+                     
+                    <tr>
+                      <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="category" value="Non-Local Recruitment"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="code" value="Total New Recruitment To Date"></td>
+                    <td><input type="text" class="form-control shadow-none" name="exphire"></td>
+                    <td><input type="number" class="form-control shadow-none" name="rollover"></td>
+                    <td><input type="number" class="form-control shadow-none" name="grads"></td>
+                    <td><input type="number" class="form-control shadow-none" name="hnd"></td>
+                    <td><input type="text" class="form-control shadow-none" name="bma"></td>
+                    <td><input type="number" class="form-control shadow-none" name="adc"></td>
+                    <td><input type="number" class="form-control shadow-none" name="ibte"></td>
+                    <td><input type="number" class="form-control shadow-none" name="schleavers"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="8">
+                            <div class="text-right">
+                          <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                        </div>
+                          </td>
+                        </tr>
+              </form>
+                  </table>
+                  </div>
+    <br>
+                  <p>Total New Recruitment This Year</p>
+                  <!--  Bootstrap table-->
+                  <div class="table-responsive">
+                      <table class="table table-bordered" id="hire_table">
+                      <form action="/nonlocalrecruit/company_level" method="POST">
+                         
+                        <tr>
+                          <th hidden></th>
+                          <th hidden></th>
+                          <th hidden></th>
+                          <th hidden></th>
+                          <th>Experienced Hire</th>
+                          <th>Staff Rollover</th>
+                          <th>Graduates</th>
+                          <th>Higher National Diploma(HND)</th>
+                          <th>Brunei Maritime Academy(BMA)</th>
+                          <th>Advance Diploma/Diploma/Certificate</th>
+                          <th>IBTE(NTEC/HNTEC)</th>
+                          <th>School Leavers(GCE 'A' Level and Below)</th>
+                          </tr>
+                            
+                           
+                          <tr>
+                            <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                          <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                          <td hidden><input type="text" class="form-control shadow-none" name="category" value="Non-Local Recruitment"></td>
+                          <td hidden><input type="text" class="form-control shadow-none" name="code" value="Total New Recruitment This Year"></td>
+                        <td><input type="text" class="form-control shadow-none" name="exphire"></td>
+                        <td><input type="number" class="form-control shadow-none" name="rollover"></td>
+                        <td><input type="number" class="form-control shadow-none" name="grads"></td>
+                        <td><input type="number" class="form-control shadow-none" name="hnd"></td>
+                        <td><input type="text" class="form-control shadow-none" name="bma"></td>
+                        <td><input type="number" class="form-control shadow-none" name="adc"></td>
+                        <td><input type="number" class="form-control shadow-none" name="ibte"></td>
+                        <td><input type="number" class="form-control shadow-none" name="schleavers"></td>
+                            </tr>
+                            <tr>
+                              <td colspan="8">
+                                <div class="text-right">
+                              <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                            </div>
+                              </td>
+                            </tr>
+                        </form> 
+                      </table>
+                    </div>
+    
+    </div>
+          </li>
+
+          <li>
+            <input type="radio" name="tab" id="eighth">
+          <label for="eighth"> Local Leavers</label>
+            <div class="content">
+                  <p class="mb-0">Breakdown of Local Leavers This Year</p>
+                    <!--  Bootstrap table-->
+                    <div class="table-responsive">
+                    <table class="table table-bordered" id="leavers_table">
+                      <form action="/leaver/company_level" method="POST">
+                        <tr>
+                          <th hidden></th>
+                          <th hidden></th>
+                          <th hidden></th>
+                          <th scope="col">Resign</th>
+                          <th scope="col">Terminate</th>
+                          <th scope="col">Transfer</th>
+                          <th scope="col">Others</th>
+                        </tr>
+                
+                        <tr>
+                          <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                  <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                  <td hidden><input type="text" class="form-control shadow-none" name="category" value="Local Leavers"></td>
+                  <td><input type="number" class="form-control shadow-none" name="resign" id="resign"></td>
+                  <td><input type="number" class="form-control shadow-none" name="terminate" id="terminate"></td>
+                  <td><input type="number" class="form-control shadow-none" name="transfer" id="transfer"></td>
+                  <td><input type="number" class="form-control shadow-none" name="others" id="others"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <div class="text-right">
+                    <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                  </div>
+                    </td>
+                  </tr>
+              </form> 
+            </table>
+          </div>
+        </div>
+              </li>
+
+          <li>
+          <input type="radio" name="tab" id="ninth">
+          <label for="ninth"> Non-Local Leavers</label>
+          <div class="content">
+            <p class="mb-0">Breakdown of Non-Local Leavers This Year</p>
+              <!--  Bootstrap table-->
+              <div class="table-responsive">
+              <table class="table table-bordered" id="leavers_table">
+                <form action="/leaver/company_level" method="POST">
+                  <tr>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th hidden></th>
+                    <th scope="col">Resign</th>
+                    <th scope="col">Terminate</th>
+                    <th scope="col">Transfer</th>
+                    <th scope="col">Others</th>
+                  </tr>
+          
+                  <tr>
+                    <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+            <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+            <td hidden><input type="text" class="form-control shadow-none" name="category" value="Non-Local Leavers"></td>
+            <td><input type="number" class="form-control shadow-none" name="resign" id="resign"></td>
+            <td><input type="number" class="form-control shadow-none" name="terminate" id="terminate"></td>
+            <td><input type="number" class="form-control shadow-none" name="transfer" id="transfer"></td>
+            <td><input type="number" class="form-control shadow-none" name="others" id="others"></td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <div class="text-right">
+              <button type="submit" class="btn btn-md btn-warning">Submit</button>
+            </div>
+              </td>
+            </tr>
+        </form> 
+      </table>
+    </div>
+  </div>
+          </li>
+      </ul>
+
+                   </div>
+                   <div class="tab-pane fade" id="tab3">
+                 
+            <br>
+          
+                    <h4>Section 3 - Content Break Down</h4>
+                    <hr>
+                    <ul class="accordion">
+                      <li>
+                        <input type="radio" name="tab" id="tenth">
+                      <label for="tenth"> Employment </label>
+                      <div class="content">
+                        <p class="mb-0">Local Employment</p>
+                          <!--  Bootstrap table-->
+                          <div class="table-responsive">
+                          <table class="table table-bordered" id="content_table">
+                            <form action="/spend/company_level" method="POST">
+                              <tr>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th scope="col">Spend in Brunei (BND $)</th>
+                                <th scope="col">Spend out Brunei (BND $)</th>
+                              </tr>
+                      
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="category" value="Employment"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="code" value="Local Employment"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="outbrunei"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <div class="text-right">
+                          <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                        </div>
+                          </td>
+                        </tr>
+                    </form> 
+                  </table>
+                </div>
+                <br>
+                <p class="mb-0">Non-Local Employment</p>
+                <!--  Bootstrap table-->
+                <div class="table-responsive">
+                <table class="table table-bordered" id="content_table">
+                  <form action="/spend/company_level" method="POST">
+                    <tr>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th scope="col">Spend in Brunei (BND $)</th>
+                      <th scope="col">Spend out Brunei (BND $)</th>
+                    </tr>
+            
+                    <tr>
+                      <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="category" value="Employment"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="code" value="Non-Local Employment"></td>
+              <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+              <td><input type="number" step="0.01" class="form-control shadow-none" name="outbrunei"></td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="text-right">
+                <button type="submit" class="btn btn-md btn-warning">Submit</button>
+              </div>
+                </td>
+              </tr>
+          </form> 
+        </table>
+      </div>
+              </div>
+                    </li>
+          
+                    <li>
+                      <input type="radio" name="tab" id="eleventh">
+                      <label for="eleventh"> Training </label>
+                      <div class="content">
+                          <!--  Bootstrap table-->
+                          <div class="table-responsive">
+                          <table class="table table-bordered" id="content_table">
+                            <form action="/spend/company_level" method="POST">
+                              <tr>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th scope="col">Spend in Brunei (BND $)</th>
+                                <th scope="col">Spend out Brunei (BND $)</th>
+                              </tr>
+                      
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="category" value="Training"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="code" value="None"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="outbrunei"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <div class="text-right">
+                          <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                        </div>
+                          </td>
+                        </tr>
+                    </form> 
+                  </table>
+                </div>
+               
+              </div>
+                    </li>
+          
+                    <li>
+                      <input type="radio" name="tab" id="twelfth">
+                      <label for="twelfth"> Goods </label>
+                      <div class="content">
+                        <p class="mb-0">Manufactured Goods</p>
+                          <!--  Bootstrap table-->
+                          <div class="table-responsive">
+                          <table class="table table-bordered" id="content_table">
+                            <form action="/spend/company_level" method="POST">
+                              <tr>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th scope="col">Spend in Brunei (BND $)</th>
+                                <th scope="col">Spend out Brunei (BND $)</th>
+                              </tr>
+                      
+                              <tr>
+                                <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="category" value="Goods"></td>
+                        <td hidden><input type="text" class="form-control shadow-none" name="code" value="Manufactured Goods"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+                        <td>Not Applicable<input type="number" class="form-control shadow-none" value="0" name="outbrunei" disabled hidden></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <div class="text-right">
+                          <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                        </div>
+                          </td>
+                        </tr>
+                    </form> 
+                  </table>
+                </div>
+                <br>
+                <p class="mb-0">Purchased Goods</p>
+                <!--  Bootstrap table-->
+                <div class="table-responsive">
+                <table class="table table-bordered" id="content_table">
+                  <form action="/spend/company_level" method="POST">
+                    <tr>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th hidden></th>
+                      <th scope="col">Spend in Brunei (BND $)</th>
+                      <th scope="col">Spend out Brunei (BND $)</th>
+                    </tr>
+            
+                    <tr>
+                      <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="category" value="Goods"></td>
+              <td hidden><input type="text" class="form-control shadow-none" name="code" value="Purchased Goods"></td>
+              <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+                        <td><input type="number" step="0.01" class="form-control shadow-none" name="outbrunei"></td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="text-right">
+                <button type="submit" class="btn btn-md btn-warning">Submit</button>
+              </div>
+                </td>
+              </tr>
+          </form> 
+        </table>
+      </div>
+              </div>
+                  </li>
+          
+                  <li>
+                    <input type="radio" name="tab" id="thirteenth">
+                    <label for="thirteenth"> Services</label>
+                    <div class="content">
+                      <!--  Bootstrap table-->
+                      <div class="table-responsive">
+                      <table class="table table-bordered" id="content_table">
+                        <form action="/spend/company_level" method="POST">
+                          <tr>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th scope="col">Spend in Brunei (BND $)</th>
+                            <th scope="col">Spend out Brunei (BND $)</th>
+                          </tr>
+                  
+                          <tr>
+                            <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="category" value="Services"></td>
+                    <td hidden><input type="text" class="form-control shadow-none" name="code" value="None"></td>
+                    <td><input type="number" step="0.01" class="form-control shadow-none" name="inbrunei"></td>
+                    <td><input type="number" step="0.01" class="form-control shadow-none" name="outbrunei"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="text-right">
+                      <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                    </div>
+                      </td>
+                    </tr>
+                </form> 
+              </table>
+            </div>
+           
+          </div>
+                </li>
+            </ul>
+          
+                   </div>
+                   <div class="tab-pane fade" id="tab4">
+                    <h4>Section 4 - Apprenticeship Development Program</h4>
+        <hr>
+        <ul class="accordion">
+          <li>
+            <input type="radio" name="tab" id="fourteenth">
+          <label for="fourteenth"> Existing Apprentice </label>
+            <div class="content">
+                <!--  Bootstrap table-->
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="app_table">
+                      <form action="/apprentice/company_level" method="POST">
+                          <tr>
+                            <th hidden></th>
+                            <th hidden></th>
+                              <th style="width: 20%;">Name</th>
+                              <th>IC Number</th>
+                              <th>I-Ready (Yes/No)</th>
+                              <th>Duration</th>
+                              <th>Start</th>
+                              <th>End</th>
+                              <th style="width: 12%;">Qualification</th>
+                              <th style="width: 12%;">Skill/Trade</th>
+                              <th>Accreditation</th>
+                            </tr>
+                       
+                          <tr>
+                            <td hidden><input type="text" class="form-control shadow-none" name="id" value="<%= id %>"></td>
+                            <td hidden><input type="text" class="form-control shadow-none" name="v_id" value="<%= v_id %>"></td>
+                              <td><input type="text" class="form-control shadow-none" name="fullname" id="fullname"></td>
+                            <td><input type="text" class="form-control shadow-none" name="ic" id="ic"></td>
+                            <td><input type="text" class="form-control shadow-none" name="iready" id="iready"></td>
+                            <td><input type="text" class="form-control shadow-none" name="duration" id="duration"></td>
+                            <td><input type="date" class="form-control shadow-none" name="start" id="start"></td>
+                            <td><input type="date" class="form-control shadow-none" name="end" id="end"></td>
+                            <td><input type="text" class="form-control shadow-none" name="qualification" id="qualification"></td>
+                            <td><input type="text" class="form-control shadow-none" name="skilltrade" id="skill"></td>
+                            <td><input type="text" class="form-control shadow-none" name="accreditation" id="accreditation"></td>
+                          </tr>
+                          <tr>
+                            <td colspan="9">
+                              <div class="text-right">
+                            <button type="submit" class="btn btn-md btn-warning">Submit</button>
+                          </div>
+                            </td>
+                          </tr>
+                        </form>
+                    </table>
+                  </div>
+            </div>
+          </li>
+          </ul>
+          <div class="text-right">
+            <a href="/comp_summary" class="btn btn-lg" id="signbutton" value="Submit">Summary</a>
+          </div>
+
+                  </div>
+                    </div><!--/.card-body -->
+                </div><!--/.card-->
+              </div><!--/.col-sm-6 -->
+            </div>
+          </div><!--/.container -->
+
+       
+        </div> <!--End of Card Body-->
+      </div> <!--End of Card-->
+      </div> <!--End of Container-->
+      <br>
+    </section>
+
+   <script>
+
+
+
+//Calculation for All the Total
+function GetWorks()
+{
+   //To get the total of local
+    var sum_mlocal=0;
+    var mlocals =  document.getElementsByName("m_local");
+
+    for (let index = 0; index < mlocals.length; index++)
+    {
+        var m_local = mlocals[index].value;
+        sum_mlocal = +(sum_mlocal) +  +(m_local) ; 
+    }
+
+    var sum_slocal=0;
+    var slocals =  document.getElementsByName("s_local");
+
+    for (let index = 0; index < slocals.length; index++)
+    {
+        var s_local = slocals[index].value;
+        sum_slocal = +(sum_slocal) +  +(s_local) ; 
+    }
+
+    var sum_sklocal=0;
+    var sklocals =  document.getElementsByName("sk_local");
+
+    for (let index = 0; index < sklocals.length; index++)
+    {
+        var sk_local = sklocals[index].value;
+        sum_sklocal = +(sum_sklocal) +  +(sk_local) ; 
+    }
+
+    var sum_nsklocal=0;
+    var nsklocals =  document.getElementsByName("nsk_local");
+
+    for (let index = 0; index < nsklocals.length; index++)
+    {
+        var nsk_local = nsklocals[index].value;
+        sum_nsklocal = +(sum_nsklocal) +  +(nsk_local) ; 
+    }
+
+    var sum_alocal=0;
+    var alocals =  document.getElementsByName("a_local");
+
+    for (let index = 0; index < alocals.length; index++)
+    {
+        var a_local = alocals[index].value;
+        sum_alocal = +(sum_alocal) +  +(a_local) ; 
+    }
+    
+    var totallocal = sum_mlocal + sum_slocal + sum_sklocal + sum_nsklocal + sum_alocal;
+    document.getElementById("total_local").value = totallocal;
+    //console.log(totallocal);
+
+    //End of the total of local
+
+    //To get the total of non-local
+    var sum_mnonlocal=0;
+    var mnonlocals =  document.getElementsByName("m_nonlocal");
+
+    for (let index = 0; index < mnonlocals.length; index++)
+    {
+        var m_nonlocal = mnonlocals[index].value;
+        sum_mnonlocal = +(sum_mnonlocal) +  +(m_nonlocal) ; 
+    }
+
+    var sum_snonlocal=0;
+    var snonlocals =  document.getElementsByName("s_nonlocal");
+
+    for (let index = 0; index < snonlocals.length; index++)
+    {
+        var s_nonlocal = snonlocals[index].value;
+        sum_snonlocal = +(sum_snonlocal) +  +(s_nonlocal) ; 
+    }
+
+    var sum_sknonlocal=0;
+    var sknonlocals =  document.getElementsByName("sk_nonlocal");
+
+    for (let index = 0; index < sknonlocals.length; index++)
+    {
+        var sk_nonlocal = sknonlocals[index].value;
+        sum_sknonlocal = +(sum_sknonlocal) +  +(sk_nonlocal) ; 
+    }
+
+    var sum_nsknonlocal=0;
+    var nsknonlocals =  document.getElementsByName("nsk_nonlocal");
+
+    for (let index = 0; index < nsknonlocals.length; index++)
+    {
+        var nsk_nonlocal = nsknonlocals[index].value;
+        sum_nsknonlocal = +(sum_nsknonlocal) +  +(nsk_nonlocal) ; 
+    }
+
+    var sum_anonlocal=0;
+    var anonlocals =  document.getElementsByName("a_nonlocal");
+
+    for (let index = 0; index < anonlocals.length; index++)
+    {
+        var a_nonlocal = anonlocals[index].value;
+        sum_anonlocal = +(sum_anonlocal) +  +(a_nonlocal) ; 
+    }
+
+    var totalnonlocal = sum_mnonlocal + sum_snonlocal + sum_sknonlocal + sum_nsknonlocal + sum_anonlocal;
+    document.getElementById("total_nonlocal").value = totalnonlocal;
+    //console.log(totalnonlocal);
+
+    //End of the total of non-local
+
+    //To get the total of SAWP
+    var sum_msawp=0;
+    var msawps =  document.getElementsByName("m_sawp");
+
+    for (let index = 0; index < msawps.length; index++)
+    {
+        var m_sawp = msawps[index].value;
+        sum_msawp = +(sum_msawp) +  +(m_sawp) ; 
+    }
+
+    var sum_ssawp=0;
+    var ssawps =  document.getElementsByName("s_sawp");
+
+    for (let index = 0; index < ssawps.length; index++)
+    {
+        var s_sawp = ssawps[index].value;
+        sum_ssawp = +(sum_ssawp) +  +(s_sawp) ; 
+    }
+
+    var sum_sksawp=0;
+    var sksawps =  document.getElementsByName("sk_sawp");
+
+    for (let index = 0; index < sksawps.length; index++)
+    {
+        var sk_sawp = sksawps[index].value;
+        sum_sksawp = +(sum_sksawp) +  +(sk_sawp) ; 
+    }
+
+    var sum_nsksawp=0;
+    var nsksawps =  document.getElementsByName("nsk_sawp");
+
+    for (let index = 0; index < nsksawps.length; index++)
+    {
+        var nsk_sawp = nsksawps[index].value;
+        sum_nsksawp = +(sum_nsksawp) +  +(nsk_sawp) ; 
+    }
+
+    var sum_asawp=0;
+    var asawps =  document.getElementsByName("a_sawp");
+
+    for (let index = 0; index < asawps.length; index++)
+    {
+        var a_sawp = asawps[index].value;
+        sum_asawp = +(sum_asawp) +  +(a_sawp) ; 
+    }
+
+    var totalsawp = sum_msawp + sum_ssawp + sum_sksawp + sum_nsksawp + sum_asawp;
+    document.getElementById("total_sawp").value = totalsawp;
+    //console.log(totalsawp);
+
+    //End of the total of SAWP
+
+
+    //To get the total work force
+    var totalforce = totallocal + totalnonlocal;
+    document.getElementById("totalforce").value = totalforce;
+    //End of the total work force
+
+    //To get the total work force local percentage
+   var localpct = (totallocal / totalforce) * 100;
+   var pct = Math.round(localpct * 10) / 10;
+   document.getElementById("local_pct").value = pct;
+    //End of the total work force local percentage
+
+  }
+
+  function GetHires()
+{
+
+    //To get the total of local recruitment
+    var sumlocal=0;
+    var localthisyear =  document.getElementsByName("total_thisyr");
+
+    for (let index = 0; index < localthisyear.length; index++)
+    {
+        var total_thisyr = localthisyear[index].value;
+        sumlocal = +(sumlocal) +  +(total_thisyr) ; 
+    }
+
+    document.getElementById("new_local").value = sumlocal;
+    //console.log(sumlocal);
+
+    //End of the total of local recruitment
+
+     //To get the total of non-local recruitment
+     var sumnonlocal=0;
+    var nonlocalthisyear =  document.getElementsByName("nontotal_thisyr");
+
+    for (let index = 0; index < nonlocalthisyear.length; index++)
+    {
+        var nontotal_thisyr = nonlocalthisyear[index].value;
+        sumnonlocal = +(sumnonlocal) +  +(nontotal_thisyr) ; 
+    }
+
+    document.getElementById("new_nonlocal").value = sumnonlocal;
+    //console.log(sumnonlocal);
+
+    //End of the total of non-local recruitment
+
+     //To get the total recruitment
+     var totallocalnonlocal = sumlocal + sumnonlocal;
+    document.getElementById("new_total").value = totallocalnonlocal;
+    //End of the total recruitment
+
+    //To get the total recruitment percentage
+   var recruitmentpct = (sumlocal / totallocalnonlocal) * 100;
+   var recruitpct = Math.round(recruitmentpct * 10) / 10;
+   document.getElementById("new_localpct").value = recruitpct;
+    //End of the total recruitment percentage
+
+  }
+
+  function GetSpends()
+  {
+
+   //Content break down 
+   
+   //Calculation for spend employment in brunei
+     var sumemplocal=0;
+    var localemployment =  document.getElementsByName("local_spendin");
+
+    for (let index = 0; index < localemployment.length; index++)
+    {
+        var local_spendin = localemployment[index].value;
+        sumemplocal = +(sumemplocal) +  +(local_spendin) ; 
+    }
+
+    var sumempnonlocal=0;
+    var nonlocalemployment =  document.getElementsByName("nonlocal_spendin");
+
+    for (let index = 0; index < nonlocalemployment.length; index++)
+    {
+        var nonlocal_spendin = nonlocalemployment[index].value;
+        sumempnonlocal = +(sumempnonlocal) +  +(nonlocal_spendin) ; 
+    }
+
+    var total_employment = sumemplocal + sumempnonlocal;
+    var test7 = total_employment.toFixed(2);
+    document.getElementById("totalempspendin").value = test7;
+
+    //End of calculation for spend employment out of brunei
+
+    //Calculation for spend employment out brunei
+    
+    var sumemplocalout=0;
+    var localemploymentout =  document.getElementsByName("local_spendout");
+
+    for (let index = 0; index < localemploymentout.length; index++)
+    {
+        var local_spendout = localemploymentout[index].value;
+        sumemplocalout = +(sumemplocalout) +  +(local_spendout) ; 
+    }
+
+    var sumempnonlocalout=0;
+    var nonlocalemploymentout =  document.getElementsByName("nonlocal_spendout");
+
+    for (let index = 0; index < nonlocalemploymentout.length; index++)
+    {
+        var nonlocal_spendout = nonlocalemploymentout[index].value;
+        sumempnonlocalout = +(sumempnonlocalout) +  +(nonlocal_spendout) ; 
+    }
+
+    var total_employmentout = sumemplocalout + sumempnonlocalout;
+    var test8 = total_employmentout.toFixed(2);
+    document.getElementById("totalempspendout").value = test8;
+
+    var totalspendlocalnon = total_employment + total_employmentout;
+    var test9 = totalspendlocalnon.toFixed(2);
+    document.getElementById("totalempspend").value = test9;
+
+    var employmentpct = (total_employment / totalspendlocalnon) * 100;
+   var emppct = Math.round(employmentpct * 10) / 10;
+   document.getElementById("pctspendin").value = emppct;
+
+   //End of calculation for spend employment out brunei
+
+
+   //Calculation for spend goods
+     var sum_manufactured=0;
+    var manufactured_in =  document.getElementsByName("manufactured");
+
+    for (let index = 0; index < manufactured_in.length; index++)
+    {
+        var manufactured = manufactured_in[index].value;
+        sum_manufactured = +(sum_manufactured) +  +(manufactured) ; 
+    }
+
+    var sum_purchase=0;
+    var purchase_in =  document.getElementsByName("purchase_spendin");
+
+    for (let index = 0; index < purchase_in.length; index++)
+    {
+        var purchase_spendin = purchase_in[index].value;
+        sum_purchase = +(sum_purchase) +  +(purchase_spendin) ; 
+    }
+
+    var totalgoods_in = sum_manufactured + sum_purchase;
+    var test10 = totalgoods_in.toFixed(2);
+    document.getElementById("spendingoods").value = test10;
+    
+    var sum_purchaseout=0;
+    var purchase_out =  document.getElementsByName("purchase_spendout");
+
+    for (let index = 0; index < purchase_out.length; index++)
+    {
+        var purchase_spendout = purchase_out[index].value;
+        sum_purchaseout = +(sum_purchaseout) +  +(purchase_spendout) ; 
+    }
+
+    var totalgoods_out = sum_purchaseout;
+    document.getElementById("spendoutgoods").value = totalgoods_out;
+
+    var totalofgoods = totalgoods_in + totalgoods_out;
+    var test11 = totalofgoods.toFixed(2);
+    document.getElementById("totalgoods").value = test11;
+
+    var pctofgoods = (totalgoods_in / totalofgoods) * 100;
+   var pct_g = Math.round(pctofgoods * 10) / 10;
+   document.getElementById("goodspct").value = pct_g;
+
+   //End of calculation for spend goods
+
+   ////////////////////////////////////////////////////////////
+
+   //Calculation for Total Spend summary
+
+   //Calculation for total spend in brunei
+
+   var sum_emp=0;
+    var emp =  document.getElementsByName("total_emp_spendin");
+
+    for (let index = 0; index < emp.length; index++)
+    {
+        var total_emp_spendin = emp[index].value;
+        sum_emp = +(sum_emp) +  +(total_emp_spendin) ; 
+    }
+
+    var sum_training=0;
+    var training =  document.getElementsByName("train_spendin");
+
+    for (let index = 0; index < training.length; index++)
+    {
+        var train_spendin = training[index].value;
+        sum_training = +(sum_training) +  +(train_spendin) ; 
+    }
+
+    var sum_goods=0;
+    var good =  document.getElementsByName("spendin_goods");
+
+    for (let index = 0; index < good.length; index++)
+    {
+        var spendin_goods = good[index].value;
+        sum_goods = +(sum_goods) +  +(spendin_goods) ; 
+    }
+
+    var sum_services=0;
+    var service =  document.getElementsByName("service_spendin");
+
+    for (let index = 0; index < service.length; index++)
+    {
+        var service_spendin = service[index].value;
+        sum_services = +(sum_services) +  +(service_spendin) ; 
+    }
+
+
+    var totalspendinbrunei = sum_emp + sum_training + sum_goods + sum_services;
+    var test12 = totalspendinbrunei.toFixed(2);
+    document.getElementById("totalin").value = test12;
+
+// End of total spend in brunei calculation
+
+//Total spend out of Brunei calculation
+
+var sum_empout=0;
+    var empout =  document.getElementsByName("total_emp_spendout");
+
+    for (let index = 0; index < empout.length; index++)
+    {
+        var total_emp_spendout = empout[index].value;
+        sum_empout = +(sum_empout) +  +(total_emp_spendout) ; 
+    }
+
+    var sum_trainingout=0;
+    var trainingout =  document.getElementsByName("train_spendout");
+
+    for (let index = 0; index < trainingout.length; index++)
+    {
+        var train_spendout = trainingout[index].value;
+        sum_trainingout = +(sum_trainingout) +  +(train_spendout) ; 
+    }
+
+    var sum_goodsout=0;
+    var goodout =  document.getElementsByName("spendout_goods");
+
+    for (let index = 0; index < goodout.length; index++)
+    {
+        var spendout_goods = goodout[index].value;
+        sum_goodsout = +(sum_goodsout) +  +(spendout_goods) ; 
+    }
+
+    var sum_serviceout=0;
+    var serviceout =  document.getElementsByName("service_spendout");
+
+    for (let index = 0; index < serviceout.length; index++)
+    {
+        var service_spendout = serviceout[index].value;
+        sum_serviceout = +(sum_serviceout) +  +(service_spendout) ; 
+    }
+
+
+    var totalspendoutbrunei = sum_empout + sum_trainingout + sum_goodsout + sum_serviceout;
+    var test13 = totalspendoutbrunei.toFixed(2);
+    document.getElementById("totalout").value = test13;
+
+// End of total spend out of Brunei calculation
+
+var totalspendsummary = totalspendinbrunei + totalspendoutbrunei;
+var test14 = totalspendsummary.toFixed(2);
+document.getElementById("totalspend").value = test14;
+
+
+var pctspend = (totalspendinbrunei / totalspendsummary) * 100;
+   var pct_spend = Math.round(pctspend * 10) / 10;
+   document.getElementById("totalpctspend").value = pct_spend;
+
+}
+
+//End of Total spend summary calculation
+
+
+  </script>
+
+     <!--jQuery and Bootstrap Bundle (includes Popper) -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+ <script src="https://code.jquery.com/jquery-3.6.2.slim.js" integrity="sha256-OflJKW8Z8amEUuCaflBZJ4GOg4+JnNh9JdVfoV+6biw=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+  
+</html>

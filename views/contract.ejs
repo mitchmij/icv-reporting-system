@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+
+    <title>ICV Report</title>
+
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo_name">ICV System</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="/vendor_dashboard">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href="/company_level">
+            <i class='bx bx-detail'></i>
+            <span class="links_name">Company Level Form</span>
+          </a>
+          <span class="tooltip">Company Level Form</span>
+        </li>
+        <li>
+          <a href="/contract" style="background-color:#dddddd;">
+            <i class='bx bx-file-blank'></i>
+            <span class="links_name">Contracts</span>
+          </a>
+          <span class="tooltip">Contracts</span>
+        </li>
+        <li>
+          <a href="/users/logout">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log Out</span>
+          </a>
+          <span class="tooltip">Log Out</span>
+        </li>
+        <li class="profile">
+          <div class="profile-details">
+            <div class="name_job">
+              <div class="name"> <%= company %></div>
+              <div class="job"><%= v_id %></div>
+            </div>
+          </div>
+          <i class="bx bx-buildings" id="log_out"><a href=""></a></i>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+
+      let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      let searchBtn = document.querySelector(".bx-search");
+      
+      closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
+      });
+      
+      
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+       if(sidebar.classList.contains("open")){
+         closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+       }else {
+         closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+       }
+      }
+      
+      </script>
+       <section class="home-section">
+        <div class="text">Contracts</div>
+        <div class="container">
+        <div class="card">
+        <div class="card-body">
+        <div class="card mb-4" style="background-color: #F7D117;">
+        <div class="card-body">
+          <h4 id="myId" style="display: none; text-align: center;"></h4>
+
+         
+        
+          <script>
+
+            //To get the date and month
+          var currentTime = new Date()
+          var month = currentTime.getMonth() + 1
+          var day = currentTime.getDate()
+  
+          if(day <= 22 && month == 4)
+          {
+             // document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q01")
+              var text = document.createTextNode("Quarter 1");
+              //title.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+             else if(day <= 22 && month == 7) {
+             //document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q02")
+              var text = document.createTextNode("Quarter 2");
+              //title.appendChild(text);
+             document.getElementById("myId").appendChild(text);
+          }
+  
+          else if(day <= 22 && month == 10) {
+            //document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q03")
+              var text = document.createTextNode("Quarter 3");
+              //title.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          else if(day <= 22 && month == 1) {
+           // document.write ("Date " +day + " Month " +month);
+              document.getElementById("myId").style.display = 'block';
+              //var title = document.createElement("h3");
+              //title.setAttribute = ("id", "Q04")
+              var text = document.createTextNode("Quarter 4");
+              //element.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          else {
+            document.getElementById("myId").style.display = 'block';
+            var text = document.createTextNode("No Active Quarter");
+              //element.appendChild(text);
+              document.getElementById("myId").appendChild(text);
+          }
+  
+          </script>
+        </div>
+        </div>
+
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Total Work Force</h5>
+              <p style="font-size: 40px; text-align: center; font-weight:bold; color: #5f5e5e;"><input type="number" style="font-weight:bold; font-size: 40px; height: 40px; width: 98px; background-color: #fff; border: none; display: inline" name="pct_local" id="pctlocal" disabled>%</p>
+              <div>
+              <a class="btn btn-block btn-dark" data-toggle="modal" data-target="#workdetail" href="#" >View more</a>
+            </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Total New Hire</h5>
+              <p style="font-size: 40px; text-align: center; font-weight:bold; color: #5f5e5e;"><input type="number" style="font-weight:bold; font-size: 40px; height: 40px; width: 98px; background-color: #fff; border: none; display: inline" name="pct_local" id="pctrecruit" disabled>%</p>
+              <div>
+              <a class="btn btn-block btn-dark" data-toggle="modal" data-target="#hiredetail" href="#" >View more</a>
+            </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Total Spend</h5>
+              <p style="font-size: 40px; text-align: center; font-weight:bold; color: #5f5e5e;"><input type="number" style="font-weight:bold; font-size: 40px; height: 40px; width: 98px; background-color: #fff; border: none; display: inline" name="pct_spend" id="pctspend" disabled>%</p>
+              <div>
+              <a class="btn btn-block btn-dark" data-toggle="modal" data-target="#spenddetail" href="#" >View more</a>
+            </div>
+            </div>
+          </div>
+        </div>
+<br><br>
+<h4>List of Active Contracts with KPI</h4>   
+<hr>   
+<div class="table-responsive">
+    <table class="table table-bordered" id="">
+      <thead>
+        <tr>
+          <tr class="text-center">
+            <th>Contract ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% contractList.forEach(cont =>{ if(cont.contract_kpi === 'Yes') { %>  
+        <tr>
+          <td class="text-center"><%= cont.contract_id%></td>
+          <td class="text-center"><%= cont.contract_title%></td>
+          <td class="text-center"><%= cont.contract_status%></td>
+        <td class="text-center"><a href="/viewcontract_kpi/<%= cont._id %>" type="button" class="btn btn-md" id="signbutton">View Contract</a></td>
+          <td class="text-center"><a href="/contract_level/<%= cont._id %>" type="button" class="btn btn-md" id="viewbtn">Fill in the form</a></td>
+            </tr>
+          <% }}) %>
+        </tbody>
+
+      </table>
+    </div>    
+    <br><br>
+    <h4>List of Active Contracts with No KPI</h4>   
+    <hr>   
+    <div class="table-responsive">
+        <table class="table table-bordered" id="">
+          <thead>
+            <tr>
+              <tr class="text-center">
+                <th>Contract ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <% contractList.forEach(cont =>{ if(cont.contract_kpi === 'No') { %>  
+            <tr>
+              <td class="text-center"><%= cont.contract_id%></td>
+              <td class="text-center"><%= cont.contract_title%></td>
+              <td class="text-center"><%= cont.contract_status%></td>
+            <td class="text-center"><a href="" type="button" class="btn btn-md" id="signbutton">View Contract</a></td>
+              <td class="text-center"><a href="/contract_level/<%= cont._id %>" type="button" class="btn btn-md" id="viewbtn">Fill in the form</a></td>
+                </tr>
+              <% }}) %>
+            </tbody>
+    
+          </table>
+        </div>              
+                        
+                      
+                  </div>
+              </div>
+            </div>
+            <br>
+      </section>
+
+      <!-- Modal -->
+<div class="modal fade" id="workdetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Total Work Force Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="table-responsive">
+          <table class="table table-bordered" id="total_table">
+            <thead>
+              <tr class="text-center">
+                <th></th>
+                <th scope="col">Category</th>
+                <th scope="col">Position</th>
+                <th scope="col">Local</th>
+                <th scope="col">Non-Local</th>
+                <th scope="col">SAWP</th>
+                <th scope="col">Total</th>
+                <th scope="col">%Local</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              <% workList.forEach(work => {%>  
+              <tr>
+                <td><%= work.contract_id%></td>
+                <td><%= work.category%></td>
+                <td><%= work.position%></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= work.local%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="nonlocal" value="<%= work.nonlocal%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="sawp" value="<%= work.sawp%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="total" value="<%= work.total%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="localpct" value="<%= work.localpct%>" disabled></td>
+                  </tr>
+                <% }) %>
+                <tr><td colspan="8"></td></tr>
+              </tbody>
+              
+              <tfoot>
+                <tr>
+                  <td class="text-center" colspan="3" style="font-weight: bold;">Total</td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="total_local" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="total_nonlocal" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="total_sawp" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="totalworkforce" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="pctlocal2" disabled></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+          <script>
+
+      var sum_local=0;
+      var locals =  document.getElementsByName("local");
+  
+      for (let index = 0; index < locals.length; index++)
+      {
+          var local = locals[index].value;
+          sum_local = +(sum_local) +  +(local) ; 
+      }
+
+      var totalloc = sum_local;
+      parseFloat(document.getElementById("total_local").value = totalloc);
+
+      ////////////////////////////////
+
+      var sum_nonlocal=0;
+      var nonlocals =  document.getElementsByName("nonlocal");
+  
+      for (let index = 0; index < nonlocals.length; index++)
+      {
+          var nonlocal = nonlocals[index].value;
+          sum_nonlocal = +(sum_nonlocal) +  +(nonlocal) ; 
+      }
+
+
+      var totalnon = sum_nonlocal;
+      parseFloat(document.getElementById("total_nonlocal").value = totalnon);
+
+      /////////////////////////////////
+
+      var sum_sawp=0;
+      var sawps =  document.getElementsByName("sawp");
+  
+      for (let index = 0; index < sawps.length; index++)
+      {
+          var sawp = sawps[index].value;
+          sum_sawp = +(sum_sawp) +  +(sawp) ; 
+      }
+
+
+      var totalsawp = sum_sawp;
+      parseFloat(document.getElementById("total_sawp").value = totalsawp);
+
+       /////////////////////////////////////
+
+       var totalforce = totalloc + totalnon;
+       document.getElementById("totalworkforce").value = totalforce;
+
+         //To get the total work force local percentage
+     var localpct = (totalloc / totalforce) * 100;
+     var pct = Math.round(localpct * 10) / 10;
+     document.getElementById("pctlocal").value = pct;
+     document.getElementById("pctlocal2").value = pct;
+
+
+          </script>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="hiredetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Total New Hire This Year Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="total_table">
+            <thead>
+              <tr>
+                <tr class="text-center">
+                  <th>Category</th>
+                  <th>Code</th>
+                  <th>Experienced Hire</th>
+                  <th>Staff rollover</th>
+                  <th>Graduates</th>
+                  <th>HND</th>
+                  <th>BMA</th>
+                  <th>ADC</th>
+                  <th>IBTE</th>
+                  <th>School Leavers</th>
+                  <th>Total</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              <% localList.forEach(locrecruit => {%>  
+              <tr>
+                <td><%= locrecruit.category%></td>
+                <td><%= locrecruit.code%></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.exphire%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.rollover%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.grads%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.hnd%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.bma%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.adc%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.ibte%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= locrecruit.schleavers%>" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="localrecruit" value="<%= locrecruit.total%>" disabled></td>
+                  </tr>
+                <% }) %>
+
+                <% nonlocalList.forEach(nonrecruit => {%>  
+                  <tr>
+                    <td><%= nonrecruit.category%></td>
+                    <td><%= nonrecruit.code%></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.exphire%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.rollover%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.grads%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.hnd%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.bma%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.adc%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.ibte%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="local" value="<%= nonrecruit.schleavers%>" disabled></td>
+                    <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="nonlocalrecruit" value="<%= nonrecruit.total%>" disabled></td>
+                      </tr>
+                    <% }) %>
+
+                <tr><td colspan="11"></td></tr>
+              </tbody>
+              
+              <tfoot>
+                <tr class="text-center">
+                  <th rowspan="2" colspan="7" class="align-middle">Total</th>
+                  <td style="font-weight: bold;">Local</td>
+                  <td style="font-weight: bold;">Non-Local</td>
+                  <td style="font-weight: bold;">Total</td>
+                  <td style="font-weight: bold;">% Local</td>
+                  <td hidden>Date</td>
+                </tr>
+                <tr>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none; font-weight:bold;" name="" id="recruitlocaltotal" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none; font-weight:bold;" name="" id="recruitnontotal" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none; font-weight:bold;" name="" id="total_recruit" disabled></td>
+                  <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none; font-weight:bold;" name="" id="pctrecruit2" disabled></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+          <script>
+
+      var sum_locrecruit=0;
+      var localrecruits =  document.getElementsByName("localrecruit");
+  
+      for (let index = 0; index < localrecruits.length; index++)
+      {
+          var localrecruit= localrecruits[index].value;
+          sum_locrecruit = +(sum_locrecruit) +  +(localrecruit) ; 
+      }
+
+      var totallocrecruit = sum_locrecruit;
+      parseFloat(document.getElementById("recruitlocaltotal").value = totallocrecruit);
+
+      ////////////////////////////////
+
+      var sum_nonrecruit=0;
+      var nonrecruits =  document.getElementsByName("nonlocalrecruit");
+  
+      for (let index = 0; index < nonrecruits.length; index++)
+      {
+          var nonlocalrecruit = nonrecruits[index].value;
+          sum_nonrecruit = +(sum_nonrecruit) +  +(nonlocalrecruit) ; 
+      }
+
+
+      var totalnonrecruit = sum_nonrecruit;
+      parseFloat(document.getElementById("recruitnontotal").value = totalnonrecruit);
+
+       /////////////////////////////////////
+
+       var totalrecruit = totallocrecruit + totalnonrecruit;
+       document.getElementById("total_recruit").value = totalrecruit;
+
+         //To get the total work force local percentage
+     var recruitpct = (totallocrecruit / totalrecruit) * 100;
+     var rpct = Math.round(recruitpct * 10) / 10;
+     document.getElementById("pctrecruit").value = rpct;
+     document.getElementById("pctrecruit2").value = rpct;
+
+
+          </script>
+
+          
+<!-- Modal -->
+<div class="modal fade" id="spenddetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Total Spend Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+        <table class="table table-bordered" id="total_table">
+          <thead>
+            <tr>
+              <tr class="text-center">
+                <th>Category</th>
+                <th>Detail</th>
+                <th>Spend in Brunei (BND)</th>
+                <th>Spend out of Brunei (BND)</th>
+                <th>Total (BND)</th>
+                <th>% Spend in Brunei</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <% spendList.forEach(spend => {%>  
+            <tr>
+              <td><%= spend.category%></td>
+              <td><%= spend.code%></td>
+              <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="inbru" value="<%= spend.inbrunei%>" disabled></td>
+              <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="outbru" value="<%= spend.outbrunei%>" disabled></td>
+              <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="" value="<%= spend.total%>" disabled></td>
+              <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; border: none;" id="" name="" value="<%= spend.spendpct%>" disabled></td>
+                </tr>
+              <% }) %>
+              <tr><td colspan="6"></td></tr>
+            </tbody>
+
+            <tfoot>
+              <tr class="text-center">
+                <td class="text-center" colspan="2" style="font-weight: bold;">Total</td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="total_in" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="total_out" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="totalspend" disabled></td>
+                <td><input type="number" class="form-control shadow-none text-center" style="background-color: #fff; font-weight:bold; border: none;" id="pctspend2" disabled></td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+          <script>
+
+      var sum_in=0;
+      var ins =  document.getElementsByName("inbru");
+  
+      for (let index = 0; index < ins.length; index++)
+      {
+          var inbru = ins[index].value;
+          sum_in = +(sum_in) +  +(inbru) ; 
+      }
+
+
+      var totalin = sum_in;
+      var t_in = totalin.toFixed(2);
+      parseFloat(document.getElementById("total_in").value = t_in);
+
+      ////////////////////////////////
+
+      var sum_out=0;
+      var outs =  document.getElementsByName("outbru");
+  
+      for (let index = 0; index < outs.length; index++)
+      {
+          var outbru = outs[index].value;
+          sum_out = +(sum_out) +  +(outbru) ; 
+      }
+
+
+      var totalout = sum_out;
+      var t_out = totalout.toFixed(2);
+      parseFloat(document.getElementById("total_out").value = t_out);
+
+
+       /////////////////////////////////////
+
+       var totalsp = totalin + totalout;
+      var t_sp = totalsp.toFixed(2);
+      parseFloat(document.getElementById("totalspend").value = t_sp);
+
+         //To get the total work force local percentage
+     var spend_pct = (totalin / totalsp) * 100;
+     var spct = Math.round(spend_pct * 10) / 10;
+     document.getElementById("pctspend").value = spct;
+     document.getElementById("pctspend2").value = spct;
+
+
+          </script>
+      
+                         
+           
+  
+       <!--jQuery and Bootstrap Bundle (includes Popper) -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    </body>
+  </html>

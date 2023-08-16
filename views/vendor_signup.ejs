@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="/css/cssstyle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    
+  <title>ICV Report - Sign Up</title>
+
+</head>
+
+
+<body>
+    
+  <div class="container-fluid" id="menu">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e1e1e1;">
+      <a class="navbar-brand" href="index">
+        <img src="/img/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        ICV Report System
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: #f5f5f5;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index" id="navlink">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" href="#" id="navlink">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" id="navlink">Contact Us</a>
+          </li>
+        </ul>
+        
+      </div>
+    </nav>
+  </div>
+
+<!-- About Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">About ICV Reporting System</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium aspernatur eius vel dolorum incidunt veniam? Nam pariatur fugit perspiciatis amet ipsa eligendi voluptas molestiae, minima quasi, reiciendis nostrum, ducimus placeat?
+
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis vero culpa sapiente nostrum, incidunt iusto dolor ullam non quae at accusantium necessitatibus nobis, corrupti possimus perspiciatis blanditiis, saepe dolore! Consequuntur.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-nd" id="signbutton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End of About Modal -->
+<br>
+
+   <div class="container" id="registersection">
+    <div class="row">
+      <div class="col">
+        <br>
+      <h2 style="color: black; text-align: center;">Registration</h2>
+      <hr>
+      <%- include ("./alerts/messages"); %>
+      <form action="/users/vendor_signup" method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="vendor_id">Vendor ID</label>
+            <input type="text" class="form-control" name="v_id" id="v_id" placeholder="" value="<%= typeof v_id != 'undefined' ? v_id : '' %>">
+          </div>
+          <div class="form-group col-md-6" hidden>
+            <label for="vendor_id">Role</label>
+            <input type="text" class="form-control" name="role" id="" placeholder="" value="Vendor">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="vendor_name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="" value="<%= typeof name != 'undefined' ? name : '' %>">
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="vendor_name">Company Name</label>
+            <input type="text" class="form-control" name="company" id="company" placeholder="" value="<%= typeof company != 'undefined' ? company : '' %>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="vendor_email">Email Address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="" value="<%= typeof email != 'undefined' ? email : '' %>">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="vendor_phone">Phone Number</label>
+            <input type="number" class="form-control" name="phone" id="phone" placeholder="" value="<%= typeof phone != 'undefined' ? phone : '' %>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">Description/Work Category</label>
+       
+              <select multiple data-multi-select-plugin class="form-control" name="description">
+                <option value="ACCOMODATION VESSEL (E.G. JACK UP, FLOATEL, COMPACT SEMI SUB)">ACCOMODATION VESSEL (E.G. JACK UP, FLOATEL, COMPACT SEMI SUB)</option>
+<option value="AFTERMARKET - INSTRUMENTATION">AFTERMARKET - INSTRUMENTATION</option>
+<option value="AFTERMARKET - ROTATING EQUIPMENT">AFTERMARKET - ROTATING EQUIPMENT</option>
+<option value="AFTERMARKET - STATIC EQUIPMENT">AFTERMARKET - STATIC EQUIPMENT</option>
+<option value="AIR-CONDITIONING GAS FIRE UNIT, PACKAGE CHILLERS, PLANT">AIR-CONDITIONING GAS FIRE UNIT, PACKAGE CHILLERS, PLANT</option>
+<option value="AIR-CONDITIONING RAC AND SPLIT UNIT">AIR-CONDITIONING RAC AND SPLIT UNIT</option
+<option value="ANCHOR HANDLING TUG SUPPLY/TUG VESSEL">ANCHOR HANDLING TUG SUPPLY/TUG VESSEL</option>
+<option value="AVIATION FACILITIES AND EQUIPMENT SERVICES">AVIATION FACILITIES AND EQUIPMENT SERVICES</option>
+<option value="AVIATION SPECIALISED EQUIPMENT AND SERVICES">AVIATION SPECIALISED EQUIPMENT AND SERVICES</option>
+<option value="BOLT TENSIONING SERVICES">BOLT TENSIONING SERVICES</option>
+<option value="BUILDINGS, HOUSES, (CIVIL) STRUCTURES">BUILDINGS, HOUSES, (CIVIL) STRUCTURES</option>
+<option value="CAFE/FRANCHISE SERVICES">CAFE/FRANCHISE SERVICES</option>
+<option value="CANTEEN SERVICES/VENDING MACHINE">CANTEEN SERVICES/VENDING MACHINE</option>
+<option value="CAPABILITY DEVELOPMENT">CAPABILITY DEVELOPMENT</option>
+<option value="CASING RUNNING SERVICES">CASING RUNNING SERVICES</option>
+<option value="CATERING AND HOTEL SERVICES - OFFSHORE">CATERING AND HOTEL SERVICES - OFFSHORE</option>
+<option value="CATERING AND HOTEL SERVICES - ONSHORE">CATERING AND HOTEL SERVICES - ONSHORE</option>
+<option value="CEMENTING SERVICES">CEMENTING SERVICES</option>
+<option value="CHARTER BARGES (E.G. FLAT TOP BARGES)">CHARTER BARGES (E.G. FLAT TOP BARGES)</option>
+<option value="CIVIL DOMESTIC">CIVIL DOMESTIC</option>
+<option value="CIVIL ENGINEERING/CONCRETE STRUCTURE DESIGN SERVICES">CIVIL ENGINEERING/CONCRETE STRUCTURE DESIGN SERVICES</option>
+<option value="CIVIL INDUSTRIAL BUILDING">CIVIL INDUSTRIAL BUILDING</option>
+<option value="CIVIL INFRASTRUCTURE">CIVIL INFRASTRUCTURE</option>
+<option value="CIVIL WORKS/BUILDING CONTRACTING SERVICES INCLUDING DRILLING/TUNNELLING">CIVIL WORKS/BUILDING CONTRACTING SERVICES INCLUDING DRILLING/TUNNELLING</option>
+<option value="COIL TUBING SERVICES - ONSHORE">COIL TUBING SERVICES - ONSHORE</option>
+<option value="COILED TUBING SERVICES - OFFSHORE">COILED TUBING SERVICES - OFFSHORE</option>
+<option value="COMPLETION EQUIPMENT">COMPLETION EQUIPMENT</option>
+<option value="COMPLETION SERVICES">COMPLETION SERVICES</option>
+<option value="COMPRESSOR SERVICES">COMPRESSOR SERVICES</option>
+<option value="CONSTRUCTION MANAGEMENT AND SUPERVISION SERVICES">CONSTRUCTION MANAGEMENT AND SUPERVISION SERVICES</option>
+<option value="CONTAINERS SERVICES">CONTAINERS SERVICES</option>
+<option value="CONTROLS AND AUTOMATION">CONTROLS AND AUTOMATION</option>
+<option value="CORING SERVICES">CORING SERVICES</option>
+<option value="CORPORATE SERVICES, COURIER SERVICES">CORPORATE SERVICES, COURIER SERVICES</option>
+<option value="CORPORATE SERVICES, EVENT MANAGEMENT">CORPORATE SERVICES, EVENT MANAGEMENT</option>
+<option value="CORPORATE SERVICES, FINANCE/AUDIT">CORPORATE SERVICES, FINANCE/AUDIT</option>
+<option value="CORPORATE SERVICES, INSURANCE">CORPORATE SERVICES, INSURANCE</option>
+<option value="CORPORATE SERVICES, LEGAL">CORPORATE SERVICES, LEGAL</option>
+<option value="CORPORATE SERVICES, MEDIA">CORPORATE SERVICES, MEDIA</option>
+<option value="CORPORATE SERVICES, TRAVEL">CORPORATE SERVICES, TRAVEL</option>
+<option value="CRANES/CRANE BARGES/HEAVY LIFT VESSELS">CRANES/CRANE BARGES/HEAVY LIFT VESSELS</option>
+<option value="DEEP WATER DRILLING RIGS AND CREWS">DEEP WATER DRILLING RIGS AND CREWS</option>
+<option value="DIGITISATION">DIGITISATION</option>
+<option value="DIRECTIONAL DRILLING SERVICES">DIRECTIONAL DRILLING SERVICES</option>
+<option value="DIVING SUPPORT VESSEL">DIVING SUPPORT VESSEL</option>
+<option value="DOWNHOLE INTERVENTION SERVICES">DOWNHOLE INTERVENTION SERVICES</option>
+<option value="DRILL BITS">DRILL BITS</option>
+<option value="DRILLING CHEMICALS AND BRINE MIXING SERVICES">DRILLING CHEMICALS AND BRINE MIXING SERVICES</option>
+<option value="DRILLING FLUIDS SERVICES">DRILLING FLUIDS SERVICES</option>
+<option value="DRILLING MATERIAL AND EQUIPMENT INSPECTION SERVICES">DRILLING MATERIAL AND EQUIPMENT INSPECTION SERVICES</option>
+<option value="DRILLING MODULES/PACKAGES (COMMISSIONING)">DRILLING MODULES/PACKAGES (COMMISSIONING)</option>
+<option value="DRILLING MODULES/PACKAGES (CONSTRUCTION)">DRILLING MODULES/PACKAGES (CONSTRUCTION)</option>
+<option value="DRILLING MODULES/PACKAGES (ENGINEERING/PROCUREMENT)">DRILLING MODULES/PACKAGES (ENGINEERING/PROCUREMENT)</option>
+<option value="DRILLING MODULES/PACKAGES (INSTALLATION)">DRILLING MODULES/PACKAGES (INSTALLATION)</option>
+<option value="DRILLING TOOLS AND EQUIPMENT - HIGH END">DRILLING TOOLS AND EQUIPMENT - HIGH END</option>
+<option value="DRILLING TOOLS AND EQUIPMENT - LOW END">DRILLING TOOLS AND EQUIPMENT - LOW END</option>
+<option value="ELECTRIC WIRELINE LOGGING">ELECTRIC WIRELINE LOGGING</option>
+<option value="ELECTRICAL DOMESTIC AND INDUSTRIAL">ELECTRICAL DOMESTIC AND INDUSTRIAL</option>
+<option value="ELECTRICAL SERVICES">ELECTRICAL SERVICES</option>
+<option value="ELECTRICAL SUBMERSIBLE PUMP (ESP)">ELECTRICAL SUBMERSIBLE PUMP (ESP)</option>
+<option value="EMERGENCY RESPONSE">EMERGENCY RESPONSE</option>
+<option value="ENERGY EFFICIENCY">ENERGY EFFICIENCY</option>
+<option value="ENGINEERING AND DESIGN">ENGINEERING AND DESIGN</option>
+<option value="ENGINEERING AND PROJECT MANAGEMENT SERVICES">ENGINEERING AND PROJECT MANAGEMENT SERVICES</option>
+<option value="ENGINEERING DESIGN, SPECIALIST">ENGINEERING DESIGN, SPECIALIST</option>
+<option value="ENVIRONMENTAL PUBLIC HEALTH">ENVIRONMENTAL PUBLIC HEALTH</option>
+<option value="ENVIRONMENTAL SERVICES">ENVIRONMENTAL SERVICES</option>
+<option value="ESTATE MAINTENANCE">ESTATE MAINTENANCE</option>
+<option value="FABRICATION/CONSTRUCTION SERVICES">FABRICATION/CONSTRUCTION SERVICES</option>
+<option value="FIELD SUPPORT VESSEL (E.G. CREW BOAT,LAUNCH, GP BOATS)">FIELD SUPPORT VESSEL (E.G. CREW BOAT,LAUNCH, GP BOATS)</option>
+<option value="FISHING AND MILLING SERVICES">FISHING AND MILLING SERVICES</option>
+<option value="FREIGHT FORWARDER SERVICES">FREIGHT FORWARDER SERVICES</option>
+<option value="GAS TURBINE SERVICES">GAS TURBINE SERVICES</option>
+<option value="GEOPHYSICAL ACQUISITION - OFFSHORE">GEOPHYSICAL ACQUISITION - OFFSHORE</option>
+<option value="GEOPHYSICAL ACQUISITION - ONSHORE">GEOPHYSICAL ACQUISITION - ONSHORE</option>
+<option value="GEOPHYSICAL INTREPRETATION">GEOPHYSICAL INTREPRETATION</option>
+<option value="GEOPHYSICAL PROCESSING">GEOPHYSICAL PROCESSING</option>
+<option value="GEOPHYSICAL SUPPORT SERVICES">GEOPHYSICAL SUPPORT SERVICES</option>
+<option value="GNSS SERVICES">GNSS SERVICES</option>
+<option value="GYRO SERVICES">GYRO SERVICES</option>
+<option value="HEAVY VEHICLES">HEAVY VEHICLES</option>
+<option value="HIGH PRESSURE FRACCING">HIGH PRESSURE FRACCING</option>
+<option value="HOIST SERVICES">HOIST SERVICES</option>
+<option value="HOUSEHOLD FURNITURE AND PACKING SERVICES">HOUSEHOLD FURNITURE AND PACKING SERVICES</option>
+<option value="HSSE">HSSE</option>
+<option value="HULL TANK CLEANING SERVICES">HULL TANK CLEANING SERVICES</option>
+<option value="HYDROCARBON MATURATION">HYDROCARBON MATURATION</option>
+<option value="INSTALLATION OF SUBSEA PACKAGES">INSTALLATION OF SUBSEA PACKAGES</option>
+<option value="INTEGRATED WELL RESERVOIR MANAGEMENT (WRM) SERVICES">INTEGRATED WELL RESERVOIR MANAGEMENT (WRM) SERVICES</option>
+<option value="IT, END-USER COMPUTING & EQUIPMENT">IT, END-USER COMPUTING & EQUIPMENT</option>
+<option value="IT, HOSTING AND STORAGE">IT, HOSTING AND STORAGE</option>
+<option value="IT, NETWORK SERVICES">IT, NETWORK SERVICES</option>
+<option value="IT, SPECIALIST SOFTWARE LICENSE AND MAINTENANCE">IT, SPECIALIST SOFTWARE LICENSE AND MAINTENANCE</option>
+<option value="IT, SYSTEM DEVELOPMENT, SPECIALIST SERVICES">IT, SYSTEM DEVELOPMENT, SPECIALIST SERVICES</option>
+<option value="IT, TELECOMMUNICATION INFRASTRUCTURE">IT, TELECOMMUNICATION INFRASTRUCTURE</option>
+<option value="IT, TELECOMMUNICATION MAINTENANCE">IT, TELECOMMUNICATION MAINTENANCE</option>
+<option value="IT, TELECOMMUNICATION SYSTEM, RADIO SYSTEM">IT, TELECOMMUNICATION SYSTEM, RADIO SYSTEM</option>
+<option value="IT, TELECOMMUNICATION SYSTEM, TELEPHONE SYSTEM">IT, TELECOMMUNICATION SYSTEM, TELEPHONE SYSTEM</option>
+<option value="JACK UP DRILLING RIGS AND CREWS">JACK UP DRILLING RIGS AND CREWS</option>
+<option value="JETTY OPERATION">JETTY OPERATION</option>
+<option value="LAND DRILLING RIGS AND CREWS">LAND DRILLING RIGS AND CREWS</option>
+<option value="LAND SURVEY">LAND SURVEY</option>
+<option value="LANDS MEASUREMENT SERVICES">LANDS MEASUREMENT SERVICES</option>
+<option value="LIFTING EQUIPMENT">LIFTING EQUIPMENT</option>
+<option value="LIGHT VEHICLES">LIGHT VEHICLES</option>
+<option value="LINER HANGER SERVICES">LINER HANGER SERVICES</option>
+<option value="LOGISTICS">LOGISTICS</option>
+<option value="MAIN POWER DISTRIBUTION">MAIN POWER DISTRIBUTION</option>
+<option value="MARINE SURVEYOR">MARINE SURVEYOR</option>
+<option value="MARINE TECHNOLOGY/HYDRODYNAMIC/AERODYNAMIC SERVICES">MARINE TECHNOLOGY/HYDRODYNAMIC/AERODYNAMIC SERVICES</option>
+<option value="MEASURING, REPORTING AND VERIFICATION (MRV) OF GREEN HOUSE GAS EMISSION">MEASURING, REPORTING AND VERIFICATION (MRV) OF GREEN HOUSE GAS EMISSION</option>
+<option value="MEDICAL SERVICES">MEDICAL SERVICES</option>
+<option value="METOCEAN DATA COLLECTION SERVICES">METOCEAN DATA COLLECTION SERVICES</option>
+<option value="MUD LOGGING SERVICES">MUD LOGGING SERVICES</option>
+<option value="MULTI-ROLE VESSEL (E.G.OIL SPILL RESPONSE, USV)">MULTI-ROLE VESSEL (E.G.OIL SPILL RESPONSE, USV)</option>
+<option value="OCTG SERVICES">OCTG SERVICES</option>
+<option value="OFFICE SUPPORT SERVICES">OFFICE SUPPORT SERVICES</option>
+<option value="OFFSHORE JACKET/TOPSIDES INSTALLATION">OFFSHORE JACKET/TOPSIDES INSTALLATION</option>
+<option value="OFFSHORE PAINTING">OFFSHORE PAINTING</option>
+<option value="OFFSHORE POSITIONING">OFFSHORE POSITIONING</option>
+<option value="OFFSHORE SCAFFOLDING">OFFSHORE SCAFFOLDING</option>
+<option value="OFFSHORE SURVEY">OFFSHORE SURVEY</option>
+<option value="ONSHORE SCAFFOLDING">ONSHORE SCAFFOLDING</option>
+<option value="OTHER ENGINEERING SERVICES">OTHER ENGINEERING SERVICES</option>
+<option value="OTHER INSTALLATION SERVICES">OTHER INSTALLATION SERVICES</option>
+<option value="OTHER SYSTEMS (COMMISSIONING)">OTHER SYSTEMS (COMMISSIONING)</option>
+<option value="OTHER SYSTEMS (CONSTRUCTION)">OTHER SYSTEMS (CONSTRUCTION)</option>
+<option value="OTHER SYSTEMS (ENGINEERING/PROCUREMENT)">OTHER SYSTEMS (ENGINEERING/PROCUREMENT)</option>
+<option value="OTHER SYSTEMS (INSTALLATION)">OTHER SYSTEMS (INSTALLATION)</option>
+<option value="PILING SERVICES">PILING SERVICES</option>
+<option value="PIPE CUTTING AND BENDING SERVICES">PIPE CUTTING AND BENDING SERVICES</option>
+<option value="PIPELAYING/UMBILICAL/CABLE LAYING SERVICES">PIPELAYING/UMBILICAL/CABLE LAYING SERVICES</option>
+<option value="PLATFORM AND TANK CLEANING SERVICES">PLATFORM AND TANK CLEANING SERVICES</option>
+<option value="PLATFORM SUPPLY VESSEL/STRAIGHT SUPPLY VESSEL">PLATFORM SUPPLY VESSEL/STRAIGHT SUPPLY VESSEL</option>
+<option value="PRINTING/PHOTOCOPYING">PRINTING/PHOTOCOPYING</option>
+<option value="PROCESS MODULES/PACKAGES (COMMISSIONING)">PROCESS MODULES/PACKAGES (COMMISSIONING)</option>
+<option value="PROCESS MODULES/PACKAGES (CONSTRUCTION)">PROCESS MODULES/PACKAGES (CONSTRUCTION)</option>
+<option value="PROCESS MODULES/PACKAGES (ENGINEERING/PROCUREMENT)">PROCESS MODULES/PACKAGES (ENGINEERING/PROCUREMENT)</option>
+<option value="PROCESS MODULES/PACKAGES (INSTALLATION)">PROCESS MODULES/PACKAGES (INSTALLATION)</option>
+<option value="PRODUCTION AND RELATED SPECIALIST SERVICES">PRODUCTION AND RELATED SPECIALIST SERVICES</option>
+<option value="PRODUCTION CHEMICAL SUPPLIES AND TECHNICAL SERVICES">PRODUCTION CHEMICAL SUPPLIES AND TECHNICAL SERVICES</option>
+<option value="PRODUCTION IMPROVEMENT">PRODUCTION IMPROVEMENT</option>
+<option value="PRODUCTION/PETROLEUM ENGINEERING SERVICES">PRODUCTION/PETROLEUM ENGINEERING SERVICES</option>
+<option value="PROJECT MANAGEMENT SERVICES">PROJECT MANAGEMENT SERVICES</option>
+<option value="PROVISION OF NATURE-BASED SOLUTIONS">PROVISION OF NATURE-BASED SOLUTIONS</option>
+<option value="PUMPS SERVICES">PUMPS SERVICES</option>
+<option value="QUALITY MANAGEMENT SERVICES">QUALITY MANAGEMENT SERVICES</option>
+<option value="QUANTITY SURVEYING">QUANTITY SURVEYING</option>
+<option value="REMOTE SENSING">REMOTE SENSING</option>
+<option value="RENEWABLE ENERGY">RENEWABLE ENERGY</option>
+<option value="RESOURCES, CONSULTANCY SERVICES">RESOURCES, CONSULTANCY SERVICES</option>
+<option value="RESOURCES, TECHNICAL">RESOURCES, TECHNICAL</option>
+<option value="RIGS AND EQUIPMENT INSPECTION SERVICES">RIGS AND EQUIPMENT INSPECTION SERVICES</option>
+<option value="RISK ASSESSEMENT SERVICES">RISK ASSESSEMENT SERVICES</option>
+<option value="ROAD EXCAVATING AND CONSTRUCTION">ROAD EXCAVATING AND CONSTRUCTION</option>
+<option value="ROAD TANKER SERVICES">ROAD TANKER SERVICES</option>
+<option value="SECURITY SERVICES">SECURITY SERVICES</option>
+<option value="SHELTERS, CABINS AND BUS STOPS">SHELTERS, CABINS AND BUS STOPS</option>
+<option value="SHIPYARD AND DRYDOCK SERVICES">SHIPYARD AND DRYDOCK SERVICES</option>
+<option value="SOIL BORING OFFSHORE">SOIL BORING OFFSHORE</option>
+<option value="SPATIAL DATA SERVICES">SPATIAL DATA SERVICES</option>
+<option value="SPECIALISED SLICKLINE SERVICES">SPECIALISED SLICKLINE SERVICES</option>
+<option value="SPECIALIST INSPECTION AND NDT SERVICES">SPECIALIST INSPECTION AND NDT SERVICES</option>
+<option value="SPECIALITY MEASUREMENT">SPECIALITY MEASUREMENT</option>
+<option value="STEAM TURBINE SERVICES">STEAM TURBINE SERVICES</option>
+<option value="STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (COMMISSIONING)">STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (COMMISSIONING)</option>
+<option value="STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (CONSTRUCTION)">STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (CONSTRUCTION)</option>
+<option value="STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (ENGINEERING/PROCUREMENT)">STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (ENGINEERING/PROCUREMENT)</option>
+<option value="STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (INSTALLATION)">STEEL/METAL/CONCRETE STRUCTURES/PLATFORMS (INSTALLATION)</option>
+<option value="SUBSEA CONSTRUCTION SERVICES">SUBSEA CONSTRUCTION SERVICES</option>
+<option value="SUBSEA/DIVING/ROV SERVICES">SUBSEA/DIVING/ROV SERVICES</option>
+<option value="SURVEY VESSELS">SURVEY VESSELS</option>
+<option value="TANK CONSTRUCTION AND MAINTENANCE">TANK CONSTRUCTION AND MAINTENANCE</option>
+<option value="TEA/COFFEE AND OFFICE CLEANING/MESSENGERS/HELPERS SERVICES">TEA/COFFEE AND OFFICE CLEANING/MESSENGERS/HELPERS SERVICES</option>
+<option value="TENDER-ASSIST DRILLING RIGS AND CREWS">TENDER-ASSIST DRILLING RIGS AND CREWS</option>
+<option value="THIRD PARTY AND VENDOR INSPECTION SERVICES">THIRD PARTY AND VENDOR INSPECTION SERVICES</option>
+<option value="TRAINING, HSE DEVELOPMENT">TRAINING, HSE DEVELOPMENT</option>
+<option value="TRAINING, HSE SPECIALISED">TRAINING, HSE SPECIALISED</option>
+<option value="TRAINING, TECHNICAL DEVELOPMENT">TRAINING, TECHNICAL DEVELOPMENT</option>
+<option value="TRAINING, TECHNICAL SPECIALISED">TRAINING, TECHNICAL SPECIALISED</option>
+<option value="TRENCHING, EXCAVATION, ROCK DUMPING SERVICES">TRENCHING, EXCAVATION, ROCK DUMPING SERVICES</option>
+<option value="UNDERWATER INSPECTION">UNDERWATER INSPECTION</option>
+<option value="UTILITIES MODULES/PACKAGES (COMMISSIONING)">UTILITIES MODULES/PACKAGES (COMMISSIONING)</option>
+<option value="UTILITIES MODULES/PACKAGES (CONSTRUCTION)">UTILITIES MODULES/PACKAGES (CONSTRUCTION)</option>
+<option value="UTILITIES MODULES/PACKAGES (ENGINEERING/PROCUREMENT)">UTILITIES MODULES/PACKAGES (ENGINEERING/PROCUREMENT)</option>
+<option value="UTILITIES MODULES/PACKAGES (INSTALLATION)">UTILITIES MODULES/PACKAGES (INSTALLATION)</option>
+<option value="VEHICLE INSPECTION EQUIPMENT SERVICES">VEHICLE INSPECTION EQUIPMENT SERVICES</option>
+<option value="WAREHOUSE MANAGEMENT">WAREHOUSE MANAGEMENT</option>
+<option value="WASTE MANAGEMENT">WASTE MANAGEMENT</option>
+<option value="WEIGHT CONTROL SERVICES">WEIGHT CONTROL SERVICES</option>
+<option value="WELDING AND JOINTING SERVICES">WELDING AND JOINTING SERVICES</option>
+<option value="WELL ABANDONMENT SERVICES">WELL ABANDONMENT SERVICES</option>
+<option value="WELL CLEAN OUT TOOLS AND SERVICES">WELL CLEAN OUT TOOLS AND SERVICES</option>
+<option value="WELL CONTROL SUPPORT SERVICES">WELL CONTROL SUPPORT SERVICES</option>
+<option value="WELL SERVICES EQUIPMENT MAINTENANCE SERVICES">WELL SERVICES EQUIPMENT MAINTENANCE SERVICES</option>
+<option value="WELL TESTING">WELL TESTING</option>
+<option value="WELLHEAD INTEGRITY MAINTENANCE SERVICES">WELLHEAD INTEGRITY MAINTENANCE SERVICES</option>
+<option value="WELLHEADS AND XMAS TREE">WELLHEADS AND XMAS TREE</option>
+<option value="WIRE WRAPPED SCREEN">WIRE WRAPPED SCREEN</option>
+<option value="WIRELINE SERVICES AND GAUGES">WIRELINE SERVICES AND GAUGES</option>
+<option value="WORKBOATS/WORKBARGES">WORKBOATS/WORKBARGES</option>
+<option value="WORKOVER UNIT SERVICES">WORKOVER UNIT SERVICES</option>
+<option value="WORKSHOP SERVICES, ONSHORE">WORKSHOP SERVICES, ONSHORE</option>
+<option value="X-OVER AND PUP JOINT FABRICATION">X-OVER AND PUP JOINT FABRICATION</option>
+            </select>
+            <script>
+
+// Initialize function, create initial tokens with itens that are already selected by the user
+function init(element) {
+    // Create div that wroaps all the elements inside (select, elements selected, search div) to put select inside
+    const wrapper = document.createElement("div");
+    wrapper.addEventListener("click", clickOnWrapper);
+    wrapper.classList.add("multi-select-component");
+
+    // Create elements of search
+    const search_div = document.createElement("div");
+    search_div.classList.add("search-container");
+    const input = document.createElement("input");
+    input.classList.add("selected-input");
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("tabindex", "0");
+    input.addEventListener("keyup", inputChange);
+    input.addEventListener("keydown", deletePressed);
+    input.addEventListener("click", openOptions);
+
+    const dropdown_icon = document.createElement("a");
+    dropdown_icon.setAttribute("href", "#");
+    dropdown_icon.classList.add("dropdown-icon");
+
+    dropdown_icon.addEventListener("click", clickDropdown);
+    const autocomplete_list = document.createElement("ul");
+    autocomplete_list.classList.add("autocomplete-list")
+    search_div.appendChild(input);
+    search_div.appendChild(autocomplete_list);
+    search_div.appendChild(dropdown_icon);
+
+    // set the wrapper as child (instead of the element)
+    element.parentNode.replaceChild(wrapper, element);
+    // set element as child of wrapper
+    wrapper.appendChild(element);
+    wrapper.appendChild(search_div);
+
+    createInitialTokens(element);
+    addPlaceholder(wrapper);
+}
+
+function removePlaceholder(wrapper) {
+    const input_search = wrapper.querySelector(".selected-input");
+    input_search.removeAttribute("placeholder");
+}
+
+function addPlaceholder(wrapper) {
+    const input_search = wrapper.querySelector(".selected-input");
+    const tokens = wrapper.querySelectorAll(".selected-wrapper");
+    if (!tokens.length && !(document.activeElement === input_search))
+        input_search.setAttribute("placeholder", "---------");
+}
+
+
+// Function that create the initial set of tokens with the options selected by the users
+function createInitialTokens(select) {
+    let {
+        options_selected
+    } = getOptions(select);
+    const wrapper = select.parentNode;
+    for (let i = 0; i < options_selected.length; i++) {
+        createToken(wrapper, options_selected[i]);
+    }
+}
+
+
+// Listener of user search
+function inputChange(e) {
+    const wrapper = e.target.parentNode.parentNode;
+    const select = wrapper.querySelector("select");
+    const dropdown = wrapper.querySelector(".dropdown-icon");
+
+    const input_val = e.target.value;
+
+    if (input_val) {
+        dropdown.classList.add("active");
+        populateAutocompleteList(select, input_val.trim());
+    } else {
+        dropdown.classList.remove("active");
+        const event = new Event('click');
+        dropdown.dispatchEvent(event);
+    }
+}
+
+
+// Listen for clicks on the wrapper, if click happens focus on the input
+function clickOnWrapper(e) {
+    const wrapper = e.target;
+    if (wrapper.tagName == "DIV") {
+        const input_search = wrapper.querySelector(".selected-input");
+        const dropdown = wrapper.querySelector(".dropdown-icon");
+        if (!dropdown.classList.contains("active")) {
+            const event = new Event('click');
+            dropdown.dispatchEvent(event);
+        }
+        input_search.focus();
+        removePlaceholder(wrapper);
+    }
+
+}
+
+function openOptions(e) {
+    const input_search = e.target;
+    const wrapper = input_search.parentElement.parentElement;
+    const dropdown = wrapper.querySelector(".dropdown-icon");
+    if (!dropdown.classList.contains("active")) {
+        const event = new Event('click');
+        dropdown.dispatchEvent(event);
+    }
+    e.stopPropagation();
+
+}
+
+// Function that create a token inside of a wrapper with the given value
+function createToken(wrapper, value) {
+    const search = wrapper.querySelector(".search-container");
+    // Create token wrapper
+    const token = document.createElement("div");
+    token.classList.add("selected-wrapper");
+    const token_span = document.createElement("span");
+    token_span.classList.add("selected-label");
+    token_span.innerText = value;
+    const close = document.createElement("a");
+    close.classList.add("selected-close");
+    close.setAttribute("tabindex", "-1");
+    close.setAttribute("data-option", value);
+    close.setAttribute("data-hits", 0);
+    close.setAttribute("href", "#");
+    close.innerText = "x";
+    close.addEventListener("click", removeToken)
+    token.appendChild(token_span);
+    token.appendChild(close);
+    wrapper.insertBefore(token, search);
+}
+
+
+// Listen for clicks in the dropdown option
+function clickDropdown(e) {
+
+    const dropdown = e.target;
+    const wrapper = dropdown.parentNode.parentNode;
+    const input_search = wrapper.querySelector(".selected-input");
+    const select = wrapper.querySelector("select");
+    dropdown.classList.toggle("active");
+
+    if (dropdown.classList.contains("active")) {
+        removePlaceholder(wrapper);
+        input_search.focus();
+
+        if (!input_search.value) {
+            populateAutocompleteList(select, "", true);
+        } else {
+            populateAutocompleteList(select, input_search.value);
+
+        }
+    } else {
+        clearAutocompleteList(select);
+        addPlaceholder(wrapper);
+    }
+}
+
+
+// Clears the results of the autocomplete list
+function clearAutocompleteList(select) {
+    const wrapper = select.parentNode;
+
+    const autocomplete_list = wrapper.querySelector(".autocomplete-list");
+    autocomplete_list.innerHTML = "";
+}
+
+// Populate the autocomplete list following a given query from the user
+function populateAutocompleteList(select, query, dropdown = false) {
+    const {
+        autocomplete_options
+    } = getOptions(select);
+
+
+    let options_to_show;
+
+    if (dropdown)
+        options_to_show = autocomplete_options;
+    else
+        options_to_show = autocomplete(query, autocomplete_options);
+
+    const wrapper = select.parentNode;
+    const input_search = wrapper.querySelector(".search-container");
+    const autocomplete_list = wrapper.querySelector(".autocomplete-list");
+    autocomplete_list.innerHTML = "";
+    const result_size = options_to_show.length;
+
+    if (result_size == 1) {
+
+        const li = document.createElement("li");
+        li.innerText = options_to_show[0];
+        li.setAttribute('data-value', options_to_show[0]);
+        li.addEventListener("click", selectOption);
+        autocomplete_list.appendChild(li);
+        if (query.length == options_to_show[0].length) {
+            const event = new Event('click');
+            li.dispatchEvent(event);
+
+        }
+    } else if (result_size > 1) {
+
+        for (let i = 0; i < result_size; i++) {
+            const li = document.createElement("li");
+            li.innerText = options_to_show[i];
+            li.setAttribute('data-value', options_to_show[i]);
+            li.addEventListener("click", selectOption);
+            autocomplete_list.appendChild(li);
+        }
+    } else {
+        const li = document.createElement("li");
+        li.classList.add("not-cursor");
+        li.innerText = "No options found";
+        autocomplete_list.appendChild(li);
+    }
+}
+
+
+// Listener to autocomplete results when clicked set the selected property in the select option 
+function selectOption(e) {
+    const wrapper = e.target.parentNode.parentNode.parentNode;
+    const input_search = wrapper.querySelector(".selected-input");
+    const option = wrapper.querySelector(`select option[value="${e.target.dataset.value}"]`);
+
+    option.setAttribute("selected", "");
+    createToken(wrapper, e.target.dataset.value);
+    if (input_search.value) {
+        input_search.value = "";
+    }
+
+    input_search.focus();
+
+    e.target.remove();
+    const autocomplete_list = wrapper.querySelector(".autocomplete-list");
+
+
+    if (!autocomplete_list.children.length) {
+        const li = document.createElement("li");
+        li.classList.add("not-cursor");
+        li.innerText = "No options found";
+        autocomplete_list.appendChild(li);
+    }
+
+    const event = new Event('keyup');
+    input_search.dispatchEvent(event);
+    e.stopPropagation();
+}
+
+
+// function that returns a list with the autcomplete list of matches
+function autocomplete(query, options) {
+    // No query passed, just return entire list
+    if (!query) {
+        return options;
+    }
+    let options_return = [];
+
+    for (let i = 0; i < options.length; i++) {
+        if (query.toLowerCase() === options[i].slice(0, query.length).toLowerCase()) {
+            options_return.push(options[i]);
+        }
+    }
+    return options_return;
+}
+
+
+// Returns the options that are selected by the user and the ones that are not
+function getOptions(select) {
+    // Select all the options available
+    const all_options = Array.from(
+        select.querySelectorAll("option")
+    ).map(el => el.value);
+
+    // Get the options that are selected from the user
+    const options_selected = Array.from(
+        select.querySelectorAll("option:checked")
+    ).map(el => el.value);
+
+    // Create an autocomplete options array with the options that are not selected by the user
+    const autocomplete_options = [];
+    all_options.forEach(option => {
+        if (!options_selected.includes(option)) {
+            autocomplete_options.push(option);
+        }
+    });
+
+    autocomplete_options.sort();
+
+    return {
+        options_selected,
+        autocomplete_options
+    };
+
+}
+
+// Listener for when the user wants to remove a given token.
+function removeToken(e) {
+    // Get the value to remove
+    const value_to_remove = e.target.dataset.option;
+    const wrapper = e.target.parentNode.parentNode;
+    const input_search = wrapper.querySelector(".selected-input");
+    const dropdown = wrapper.querySelector(".dropdown-icon");
+    // Get the options in the select to be unselected
+    const option_to_unselect = wrapper.querySelector(`select option[value="${value_to_remove}"]`);
+    option_to_unselect.removeAttribute("selected");
+    // Remove token attribute
+    e.target.parentNode.remove();
+    input_search.focus();
+    dropdown.classList.remove("active");
+    const event = new Event('click');
+    dropdown.dispatchEvent(event);
+    e.stopPropagation();
+}
+
+// Listen for 2 sequence of hits on the delete key, if this happens delete the last token if exist
+function deletePressed(e) {
+    const wrapper = e.target.parentNode.parentNode;
+    const input_search = e.target;
+    const key = e.keyCode || e.charCode;
+    const tokens = wrapper.querySelectorAll(".selected-wrapper");
+
+    if (tokens.length) {
+        const last_token_x = tokens[tokens.length - 1].querySelector("a");
+        let hits = +last_token_x.dataset.hits;
+
+        if (key == 8 || key == 46) {
+            if (!input_search.value) {
+
+                if (hits > 1) {
+                    // Trigger delete event
+                    const event = new Event('click');
+                    last_token_x.dispatchEvent(event);
+                } else {
+                    last_token_x.dataset.hits = 2;
+                }
+            }
+        } else {
+            last_token_x.dataset.hits = 0;
+        }
+    }
+    return true;
+}
+
+// You can call this function if you want to add new options to the select plugin
+// Target needs to be a unique identifier from the select you want to append new option for example #multi-select-plugin
+// Example of usage addOption("#multi-select-plugin", "tesla", "Tesla")
+function addOption(target, val, text) {
+    const select = document.querySelector(target);
+    let opt = document.createElement('option');
+    opt.value = val;
+    opt.innerHTML = text;
+    select.appendChild(opt);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // get select that has the options available
+    const select = document.querySelectorAll("[data-multi-select-plugin]");
+    select.forEach(select => {
+
+        init(select);
+    });
+
+    // Dismiss on outside click
+    document.addEventListener('click', () => {
+        // get select that has the options available
+        const select = document.querySelectorAll("[data-multi-select-plugin]");
+        for (let i = 0; i < select.length; i++) {
+            if (event) {
+                var isClickInside = select[i].parentElement.parentElement.contains(event.target);
+
+                if (!isClickInside) {
+                    const wrapper = select[i].parentElement.parentElement;
+                    const dropdown = wrapper.querySelector(".dropdown-icon");
+                    const autocomplete_list = wrapper.querySelector(".autocomplete-list");
+                    //the click was outside the specifiedElement, do something
+                    dropdown.classList.remove("active");
+                    autocomplete_list.innerHTML = "";
+                    addPlaceholder(wrapper);
+                }
+            }
+        }
+    });
+
+});
+
+
+
+            </script>
+          </div>
+      </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="vendor_password">Password</label>
+            <input type="password" class="form-control"  name="password" id="password" placeholder="" value="<%= typeof password != 'undefined' ? password : '' %>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" class="form-control" name="password2" id="password2" placeholder="" value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
+          </div>
+          <div class="form-group col-md-6" hidden>
+            <label for="confirm">Status</label>
+            <input type="password" class="form-control" name="status" id="status" placeholder="" value="Waiting For Approval">
+          </div>
+        </div>
+        <div class="text-right">
+        <button type="submit" class="btn btn-lg" id="sign">Sign Up</button>
+      </div>
+      </form>
+      </div>
+    </div>
+    <br>
+  </div>
+ 
+
+<footer class="text-center text-secondary" style="background-color: #504b4b">
+  <!-- Grid container -->
+  <div class="container p-4"></div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #e1e1e1;">
+    © 2023 Copyright:
+    <a class="text-secondary" href="https://mdbootstrap.com/">ICV Report System</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+ 
+
+ <!--jQuery and Bootstrap Bundle (includes Popper) -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

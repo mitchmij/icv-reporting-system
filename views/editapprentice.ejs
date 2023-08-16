@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <title>ICV Report</title>
+
+  </head>
+
+  <body style="background-color: #A7A9AC;">
+
+    <div class="container" style="padding-top: 50px; padding-bottom: 40px; width: 50%;">
+      <div class="card" style="padding: 10px">
+        <div class="card-body">
+      
+      <h4>Apprenticeship Break Down</h4>
+      <hr>
+
+<form action="/apprentice/editapprentice/<%= apprentices._id %>?_method=PUT" method="POST">
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="fullname">Full Name</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" value="<%= apprentices.fullname %>" required>
+      </div>
+      </div>
+  
+      <div class="row form-group mb-4">
+      <div class="col">
+        <label for="ic">IC Number</label>
+        <input type="text" class="form-control" id="ic" name="ic" value="<%= apprentices.ic %>" required>
+      </div>
+    </div>
+  
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="ready">I-Ready</label>
+            <input type="text" class="form-control" id="iready" name="iready" value="<%= apprentices.iready %>" required>
+          </div>
+          </div>
+  
+          <div class="row form-group mb-4">
+          <div class="col">
+            <label for="duration">Duration</label>
+            <input type="text" class="form-control" id="duration" name="duration" value="<%= apprentices.duration %>" required>
+          </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="start">Start</label>
+            <input type="date" class="form-control" id="start" name="start" value="<%= apprentices.start %>" required>
+          </div>
+          </div>
+  
+          <div class="row form-group mb-4">
+          <div class="col">
+            <label for="end">End</label>
+            <input type="date" class="form-control" id="end" name="end" value="<%= apprentices.end %>" required>
+          </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="qualify">Qualification</label>
+            <input type="text" class="form-control" id="qualification" name="qualification" value="<%= apprentices.qualification %>" required>
+          </div>
+          </div>
+  
+          <div class="row form-group mb-4">
+          <div class="col">
+            <label for="skill">Skill/Trade</label>
+            <input type="text" class="form-control" id="skilltrade" name="skilltrade" value="<%= apprentices.skilltrade %>" required>
+          </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col">
+            <label for="accredite">Accreditation</label>
+            <input type="text" class="form-control" id="accreditation" name="accreditation" value="<%= apprentices.accreditation %>" required>
+          </div>
+    </div>
+
+    <div class="text-right">
+      <button type="submit" class="btn btn-warning btn-md" onclick="myFunction()">Update</button>
+
+      <script>
+      function myFunction() {
+        alert("Data is updated successfully!");
+      }
+      </script>
+      <button type="button" class="btn btn-danger btn-md" id="signbutton2" onclick="window.location.href='/comp_summary';">Back</button>
+   </div>
+  
+  </form>
+</div>
+</div>
+</div>
+
+  
+
+       <!--jQuery and Bootstrap Bundle (includes Popper) -->
+       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        </body>
+      </html>

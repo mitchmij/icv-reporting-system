@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <title>ICV Report</title>
+
+  </head>
+
+  <body style="background-color: #A7A9AC;">
+
+    <div class="container" style="padding-top: 50px; padding-bottom: 40px; width: 50%;">
+      <div class="card" style="padding: 10px">
+        <div class="card-body">
+      
+      <h4>Content Break Down</h4>
+      <hr>
+
+<form action="/spend/editspendcontract/<%= spends._id %>?_method=PUT" method="POST">
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" name="category" value="<%= spends.category %>" disabled>
+      </div>
+      </div>
+    
+      <div class="row form-group mb-4">
+      <div class="col">
+        <label for="code">Code</label>
+        <input type="text" class="form-control" id="code" name="code" value="<%= spends.code %>" disabled>
+      </div>
+    </div>
+  
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="inbru">Spend in Brunei (BND $)</label>
+        <input type="number" step="0.01" class="form-control" id="inbrunei" name="inbrunei" value="<%= spends.inbrunei %>" placeholder="" required>
+      </div>
+      </div>
+  
+      <div class="row form-group mb-4">
+      <div class="col">
+        <label for="outbru">Spend out of Brunei (BND $)</label>
+        <input type="number" step="0.01" class="form-control" id="outbrunei" name="outbrunei" value="<%= spends.outbrunei %>" required>
+      </div>
+    </div>
+    <br>
+    <div class="text-right">
+      <button type="submit" class="btn btn-warning btn-md" onclick="myFunction()">Update</button>
+
+      <script>
+      function myFunction() {
+        alert("Data is updated successfully!");
+      }
+      </script>
+ <button type="button" class="btn btn-danger btn-md" id="signbutton2" onclick="window.location.href='/cont_summary/<%= spends.contract_no %>'">Back</button>
+   </div>
+  </form>
+</div>
+</div>
+</div>
+
+  
+
+       <!--jQuery and Bootstrap Bundle (includes Popper) -->
+       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        </body>
+      </html>
