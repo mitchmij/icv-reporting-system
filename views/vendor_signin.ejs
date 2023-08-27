@@ -104,8 +104,9 @@
                   <input type="password" class="form-control shadow-none" id="password" name="password">
                 </div>
               </div>
-              <div class="text-center">
-              <button type="submit" class="btn btn-lg" id="sign">Sign In</button>
+              <div class="text-right">
+                <a class="text-secondary" data-toggle="modal" data-target="#forgot" href="#" style="color: #504b4b; text-decoration: none;">Forgot Password</a>
+              <button type="submit" class="btn btn-md" id="signbutton">Sign In</button>
               </div>
               </form>
             </div>
@@ -114,6 +115,31 @@
       </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Forgot Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/forgotpassword" method="POST">
+          <div class="row">
+            <div class="col">
+              <label for="name">Email Address (Enter your email)</label>
+              <input type="search" name="email" class="form-control form-control-dark w-100 rounded-0 border-0" placeholder="Search..." aria-label="Search">
+            </div>
+          </div> 
+          </form>  
+      </div>
+
+    </div>
+  </div>
+</div>
+      
 
 <footer class="text-center text-secondary" style="background-color: #504b4b;">
   <!-- Grid container -->

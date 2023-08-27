@@ -10,19 +10,26 @@ const connectDB = require('./server/config/db');
 const passport = require('passport');
 const flash = require('connect-flash');
 require('express-flash-message');
+var cors = require('cors');
+
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 //Passport config
 require('./server/config/passport')(passport);
+var configData = require("./config/connection");
 
 // Connect to Database  
 connectDB();
 
+var connectionInfo = await configData.getConnectionInfo();
+mongoose.connect(connectionInfo.DATABASE_URL);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(cors('*'));
 
 // Static Files
 app.use(express.static('public'));

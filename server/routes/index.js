@@ -18,6 +18,7 @@ const SpendContract = require("../models/SpendContract");
 const ApprenticeContract = require("../models/ApprenticeContract");
 const Subcontract = require("../models/Subcontract");
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 //const workforcecontroller = require('../controllers/workforcecontroller');
 //require('../models/User');
 //require('../models/User');
@@ -37,11 +38,19 @@ router.get('/vendor_signup', checkNotAuthenticated, (req, res) => {
     res.render('vendor_signup')
   })
 
+  router.get('/verifyOTP', checkNotAuthenticated, (req, res) => {
+    res.render('verifyOTP')
+  })
+
   //Sign In Page
 router.get('/vendor_signin', checkNotAuthenticated, (req, res) => {
     res.render('vendor_signin')
   })
 
+  // Company Level Page
+router.get('/login_error', ensureAuthenticated, (req, res) => 
+res.render('login_error', {
+}));
 
 // Company Level Page
 router.get('/company_level', ensureAuthenticated, (req, res) => 
@@ -125,7 +134,22 @@ res.render('editprofile', {
   company:req.user.company,
   email:req.user.email,
   phone:req.user.phone,
-  description:req.user.description
+  description:req.user.description,
+  password:req.user.password
+}));
+
+
+//Edit password page
+router.get('/editpwd', ensureAuthenticated, (req, res) => 
+res.render('editpwd', {
+  id:req.user._id,
+  v_id:req.user.v_id,
+  name:req.user.name,
+  company:req.user.company,
+  email:req.user.email,
+  phone:req.user.phone,
+  description:req.user.description,
+  password:req.user.password
 }));
 
 /////////////////////////////////////////
@@ -749,6 +773,52 @@ router.get('/contract_level/:id', ensureAuthenticated, async function (req, res)
       company:req.user.company
     })
 
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post('/forgotpassword', async (req, res) => {
+ 
+  try {
+
+    
+    const user = await User.findOne({email : req.body.email });
+
+
+    res.render("forgotpassword", {
+      user
+    })
+    console.log(user.email)
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+
+
+})
+
+router.put('/forgotpassword', async function (req, res) {
+  const user = await User.findOne({email : req.body.email });
+
+
+  user.password = req.body.password
+  try {
+   
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, async (err, hash) => {
+        if (err) throw err;
+        //Set password to hashed
+        user.password = hash;
+     
+    await user.save();
+    req.flash('success_msg', 'Password changed successfully');
+    console.log("Password changed")
+   // return req.flash('success_msg', 'Data added successfully');
+   res.redirect('/vendor_signin')
+  });
+});
   } catch (error) {
     console.log(error);
   }

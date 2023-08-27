@@ -463,3 +463,24 @@ select[data-multi-select-plugin] {
   max-height: 130px;
   overflow-y: auto;
 }
+
+#viewbtn{
+  background-color: #F7D117;
+  color: azure;
+  border-radius: 5px;
+}
+
+#viewbtn:hover{
+  background-color: #D42E12;
+  color: #000;
+}
+
+#signbutton{
+  background-color: #F7D117;
+  color: azure;
+  border-radius: 5px;
+}
+
+#signbutton:hover{
+  background-color: #D42E12;
+}

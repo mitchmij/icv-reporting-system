@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
   v_id: {
@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
     minlength: 6,
     trim: true
   },
@@ -57,17 +57,17 @@ const UserSchema = new mongoose.Schema({
 }
 });
 
-/*
+
 UserSchema.methods.generateVerificationToken = function () {
   const user = this;
   const verificationToken = jwt.sign(
       { ID: user._id },
-      process.env.USER_VERIFICATION_TOKEN_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: "7d" }
   );
   return verificationToken;
 };
-*/
+
 
 //const User=require('../models/User');
 const User = mongoose.model('User', UserSchema);

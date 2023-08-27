@@ -471,19 +471,41 @@
             </tbody>
           </table>
         </div>
-<br><br>
-    <div class="text-right">
-    <a href="/contract" class="btn btn-lg" id="signbutton" style="font-size: large;">Back To Contracts</a>
-  </div>
-    <br><br>
-  </div>
-
-  <br><br>
-  
-
- 
-
-
+        <br>
+        <p style="font-size: 15px; font-weight: bold;"><input type="checkbox" id="checkme"> I acknowledge the above informations are correct and updated.</p>
+    
+        <form action="/users/cont_summary" method="POST">
+          <button type="submit" class="btn btn-danger btn-lg" id="sendNewSms" disabled onclick="myFunc()">Submit Form</button>
+          </form>
+        <div class="text-right">
+        <a href="/contract" class="btn btn-lg" style="font-size: large;" id="signbutton">Back To Contract</a>
+      </div>
+       
+      <script>
+        var checker = document.getElementById('checkme');
+     var sendbtn = document.getElementById('sendNewSms');
+     // when unchecked or checked, run the function
+     checker.onchange = function(){
+    if(this.checked){
+        sendbtn.disabled = false;
+    } else {
+        sendbtn.disabled = true;
+    }
+    
+    
+    }
+    
+    function myFunc() {
+                        alert("You have succesfully completed filling in the form. Check your email for submit confirmation.");
+                      }
+    
+      </script>
+        <br><br>
+      </div>
+    
+      <br><br>
+      
+    
 
 
        <!--jQuery and Bootstrap Bundle (includes Popper) -->

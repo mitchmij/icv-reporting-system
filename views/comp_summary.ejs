@@ -431,10 +431,10 @@
     </div>
     <br>
     <p style="font-size: 15px; font-weight: bold;"><input type="checkbox" id="checkme"> I acknowledge the above informations are correct and updated.</p>
-
+    <form action="/users/comp_summary" method="POST">
+      <button type="submit" class="btn btn-danger btn-lg" id="sendNewSms" disabled onclick="myFunc()">Submit Form</button>
+      </form>
     <div class="text-right">
-    
-      <button type="button" class="btn btn-danger btn-lg" id="sendNewSms" disabled onclick="myFunc()">Submit Form</button>
     <a href="/vendor_dashboard" class="btn btn-lg" style="font-size: large;" id="signbutton">Back To Dashboard</a>
   </div>
    
@@ -448,6 +448,7 @@ if(this.checked){
 } else {
     sendbtn.disabled = true;
 }
+
 
 }
 
