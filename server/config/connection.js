@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { getSecret } = require("./keyvault");
+const { getSecret } = require("./server/config/keyvault");
 
 async function putKeyVaultSecretInEnvVar() {
 
