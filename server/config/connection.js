@@ -29,7 +29,7 @@ async function getConnectionInfo() {
   }
 
   // To override the database name, set the DATABASE_NAME environment variable in the .env file
-  const DATABASE_NAME = process.env.DATABASE_NAME || "icv-report-1c7-database";
+  const DATABASE_NAME = process.env.DATABASE_NAME || "icv-report-database";
 
   return {
     DATABASE_URL: process.env.DATABASE_URL,
