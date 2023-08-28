@@ -13,25 +13,18 @@ require('express-flash-message');
 var cors = require('cors');
 
 
+const app = express();
+const port = process.env.PORT || 5000;
+
 //Passport config
 require('./server/config/passport')(passport);
-var configData = require("./config/connection");
-
-async function getApp() {
+//var configData = require("./config/connection");
 
 // Connect to Database  
 connectDB();
 
-
-var connectionInfo = await configData.getConnectionInfo();
-mongoose.connect(connectionInfo.DATABASE_URL);
-
-const app = express();
-//const port = process.env.PORT || 5000;
-
-var port = normalizePort(process.env.PORT || '5000');
-  app.set('port', port);
-
+//var connectionInfo = await configData.getConnectionInfo();
+//mongoose.connect(connectionInfo.DATABASE_URL);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -102,46 +95,6 @@ app.get('*', (req, res) => {
   res.status(404).render('404');
 });
 
-//app.listen(port, ()=> {
- // console.log(`App are listening on port ${port}`)
-//});
-
-
-  // catch 404 and forward to error handler
-  app.use(function (req, res, next) {
-    next(createError(404));
-  });
-
-  // error handler
-  app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get("env") === "development" ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render("error");
-  });
-
-  return app;
-}
-
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-module.exports = {
-  getApp
-};
+app.listen(port, ()=> {
+  console.log(`App are listening on port ${port}`)
+});
